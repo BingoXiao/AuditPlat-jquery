@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css" rel="stylesheet">
+    <link href="../../css/checkbox.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+
+    <!--百度地图API -->
+    <script type="text/javascript"
+            src="https://api.map.baidu.com/api?v=2.0&ak=vyP2EY9up3oDOPAVdWMnH4elquPxa1vm&s=1"></script>
+
+    <style>
+        body{
+            font-size: 16px;
+        }
+        .form-group{
+            margin: 30px 0;
+            padding-left: 0;
+        }
+        .bottomBtn button{
+            padding:8px 30px;
+            font-size: 16px;
+            margin:0 10px;
+        }
+        label:before{
+            margin-left: 0;
+            margin-bottom: 2px;
+        }
+        .checkbox-inline{
+            padding-left: 10px;
+        }
+        .dpicon{
+            color: #cccccc;
+            line-height: 34px;
+        }
+        .timeShow input{
+            height:26px;
+        }
+        .timeShow .dpicon{
+            line-height: 30px;
+        }
+        .dataTips{
+            color: #b63430;
+            margin-top:4px;
+            font-weight: bold;
+            position: absolute;
+        }
+        table.dataTips{
+            position: relative;
+        }
+        table.dataTips tr td{
+            padding: 3px 15px 3px 0;
+        }
+        h4{
+            margin-left:6px;
+            margin-top: 20px;
+            margin-bottom:30px
+        }
+        .telModule{
+            margin-left: 85px;
+        }
+        .VPass{
+            color: #12a998;
+        }
+        .VReject{
+            color: #fe274a;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container-fluid" style="min-width:1200px;">
+    <!--头部-->
+    <div class="row" data-background-color="dark" style="height:60px;">
+        <table class="table header" style="margin-top:0;margin-bottom:0;width:100%">
+            <tr>
+                <td>
+                    <div class="div-img">
+                        <img id="jmicon" src="../../img/logo.png" class="img-header-logo" alt="近脉商家中心"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!--商家审核信息修改的详细内容-->
+    <div id="shopListInfo" class="col-xs-offset-1 col-xs-10" style="margin-top:20px;font-size: 14px;">
+
+        <div class="row" style="margin:30px 0 0 0;">
+            <div class="col-xs-4 text-left">
+                <h4 style="margin-bottom:0">商家账号:&nbsp;<span id="busNameTop"></span></h4>
+            </div>
+            <div id="verifyState" class="col-xs-8 text-left" style="display:none;">
+
+            </div>
+        </div>
+
+        <hr style="border-color:#a4a6a9"/>
+        <div id="shopListFrom" class="form-horizontal">
+
+            <div id="coor" class="row" style="margin-left: 10px">
+                <h4>合作信息</h4>
+
+                <div class="form-group" style="margin-top: 0">
+                    <label class="control-label label-subtitle">&lowast;&nbsp;负责人姓名:</label>
+                    <div class="col-xs-6">
+                        <input id="res_name" type="text" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 0">
+                    <label class="control-label label-subtitle">&lowast;&nbsp;负责人电话:</label>
+                    <div class="col-xs-6">
+                        <input id="res_phone" type="text" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Store" class="row" style="margin-left: 10px">
+                <h4>门店基本信息</h4>
+                <div class="shopInfo">
+                    <div class="form-group" style="margin-top: 0">
+                        <label class="control-label label-subtitle">&lowast;&nbsp;门店名称:</label>
+                        <div class="col-xs-6">
+                            <input type="text" class="form-control store_name"/>
+                            <label class="dataTips">原始名称：<small id="old_store_name"></small></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label label-subtitle">&lowast;&nbsp;门店号码:</label>
+                        <div>
+                            <div class="col-xs-3 mainMP" style="padding-right:0;display:none">
+                                <input type="text" class="form-control mphone" placeholder="手机号">
+                            </div>
+                            <div class="mainTP" style="display:none">
+                                <div class="col-xs-1" style="padding-right:0;">
+                                    <input type="text" class="form-control area_code" placeholder="区号">
+                                </div>
+                                <div class="col-xs-2">
+                                    <input type="text" class="form-control store_tel" placeholder="请输入门店电话">
+                                </div>
+                                <div class="col-xs-1" style="padding-left: 0">
+                                    <input type="text" class="form-control ext" placeholder="分机号">
+                                </div>
+                            </div>
+                        </div>
+                        <label class="col-xs-1 telMore" style="display:none;color:#8d0000;font-size:13px;padding-top:10px;cursor: pointer">更多</label>
+                    </div>
+                    <div class="dataTips" style="margin-top:-25px;margin-left:85px">
+                        <label>&emsp;原始号码：<small id="old_phone"></small></label>
+                    </div>
+
+                    <!--其他联系方式-->
+                    <div class="telModule" style="display:none">
+                        <div class="form-group telMp" style="display:none;">
+                            <label class="control-label label-subtitle">&nbsp;</label>
+                            <div class="col-xs-3" style="padding-left:0">
+                                <input type="text" class="form-control mphone" placeholder="手机号">
+                            </div>
+                            <label class="dataTips" style="line-height:30px;">原始号码：<small class="old_mphone"></small></label>
+                        </div>
+
+                        <div class="form-group telTP" style="display:none;">
+                            <label class="control-label label-subtitle">&nbsp;</label>
+                            <div class="col-xs-1" style="padding-left:0">
+                                <input type="text" class="form-control area_code" placeholder="区号">
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="text" class="form-control store_tel" placeholder="请输入门店电话">
+                            </div>
+                            <div class="col-xs-1" style="padding-left: 0">
+                                <input type="text" class="form-control ext" placeholder="分机号">
+                            </div>
+                            <label class="dataTips" style="line-height:30px;">原始号码：<small class="old_tphone"></small></label>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="control-label label-subtitle">&lowast;&nbsp;门店地址:</label>
+                        <div class="col-xs-2" style="padding-right:0">
+                            <input type="text" class="form-control province">
+                            <span class="fa fa-caret-down form-control-feedback dpicon"></span>
+                        </div>
+                        <div class="col-xs-2" style="padding-right:0">
+                            <input type="text" class="form-control city">
+                            <span class="fa fa-caret-down form-control-feedback dpicon"></span>
+                        </div>
+                        <div class="col-xs-2" style="padding-right:0">
+                            <input type="text" class="form-control district">
+                            <span class="fa fa-caret-down form-control-feedback dpicon"></span>
+                        </div>
+                        <div class="col-xs-2" style="padding-right:0">
+                            <input type="text" class="form-control circle">
+                            <span class="fa fa-caret-down form-control-feedback dpicon"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label label-subtitle">&nbsp;</label>
+                        <div class="col-xs-5" style="padding-left: 0;margin-left:85px;">
+                            <input type="text" class="form-control address" id="address" name="address" maxlength="50"
+                                   placeholder="填写具体的位置（精确至门牌号），请与执照地址保持一致">
+                            <label class="dataTips">原始位置：<small id="old_address"></small></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label label-subtitle">&lowast;&nbsp;门店分类:</label>
+                        <div class="col-xs-2" style="padding-right: 0">
+                            <input type="text" class="form-control" id="repast" placeholder="美食">
+                            <span class="fa fa-caret-down form-control-feedback dpicon"></span>
+                        </div>
+                        <div class="col-xs-2" style="padding-right: 0">
+                            <input type="text" class="form-control" id="category">
+                            <span class="fa fa-caret-down form-control-feedback dpicon"></span>
+                        </div>
+                        <div class="col-xs-2" style="padding-right: 0">
+                            <input type="text" class="form-control" id="small_category">
+                            <span class="fa fa-caret-down form-control-feedback dpicon"></span>
+                        </div>
+                    </div>
+                    <label class="dataTips" style="margin-left:95px;margin-top:-22px">原始分类：<small id="old_category"></small></label>
+                </div>
+            </div>
+
+            <div id="mapshow" class="form-group" style="margin-left:5px;margin-bottom:0;">
+                <div class="col-xs-10" style="margin-bottom: 10px">
+                    <small class="form-control-static map_tips">
+                        为了更快的通过审核，请在地图上精确的标记您的位置
+                    </small>
+                </div>
+                <div class="col-xs-11 text-left" style="margin-left:16px;padding-left: 0;position:relative;">
+                    <div id="mapOver"></div>
+                    <div id="allmap" style="width:100%;margin:auto;height:400px;"></div>
+                    <div id="searchResultPanel" style="display: none;"></div>
+                </div>
+            </div>
+            <hr/>
+
+            <div id="OpeningHours" class="row" style="margin-left: 10px">
+                <h4>营业时间</h4>
+                <!--每周营业时间一-->
+                <div class="openTimeShow">
+                    <div class="form-group">
+                        <label class="control-label label-subtitle">每周营业时间<small class="weekTitle">一</small>:&emsp;</label>
+                        <div class="openweek">
+                            <div class="checkbox checkbox-inline">
+                                <input class="week" type="checkbox" value="0">
+                                <label>整周&nbsp;&nbsp;|</label>
+                            </div>
+                            <div class="checkbox checkbox-inline">
+                                <input class="week" type="checkbox" value="1">
+                                <label>周一</label>
+                            </div>
+                            <div class="checkbox checkbox-inline">
+                                <input class="week" type="checkbox" value="2">
+                                <label>周二</label>
+                            </div>
+                            <div class="checkbox checkbox-inline">
+                                <input class="week" type="checkbox" value="3">
+                                <label>周三</label>
+                            </div>
+                            <div class="checkbox checkbox-inline">
+                                <input class="week" type="checkbox" value="4">
+                                <label>周四</label>
+                            </div>
+                            <div class="checkbox checkbox-inline">
+                                <input class="week" type="checkbox" value="5">
+                                <label>周五</label>
+                            </div>
+                            <div class="checkbox checkbox-inline">
+                                <input class="week" type="checkbox" value="6">
+                                <label>周六</label>
+                            </div>
+                            <div class="checkbox checkbox-inline">
+                                <input class="week" type="checkbox" value="7">
+                                <label>周日</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-left:99px">
+                        <div class="checkbox checkbox-inline label-subtitle">
+                            <input class="week" type="checkbox" value="24h">
+                            <label>24小时&nbsp;&nbsp;|</label>
+                        </div>
+
+                        <div class="control-label pull-left timeShow">&emsp;
+                            <div class="col-xs-4" style="padding-right: 0">
+                                <input type="text" class="form-control timeFrom">
+                                <span class="fa fa-caret-down form-control-feedback dpicon"></span>
+                            </div>
+                            <!--<select class="time timeFrom">
+                                &lt;!&ndash;<option>10:00</option>&ndash;&gt;
+                            </select>-->
+                            <div class="col-xs-1">&nbsp;至&nbsp;</div>
+                            <div class="col-xs-4" style="padding-right: 0">
+                                <input type="text" class="form-control timeTo">
+                                <span class="fa fa-caret-down form-control-feedback dpicon"></span>
+                            </div>
+                            <!--<select class="time timeTo">
+                                &lt;!&ndash;<option>18:00</option>&ndash;&gt;
+                            </select>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="dataTips" style="margin-left:25px;margin-top:-20px">
+                <tr class="addOpening">
+                    <td>原始数据：</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <div id="openingState" class="row" style="margin-left: 10px">
+                <h4>营业状态</h4>
+                <div class="form-group">
+                    <label class="control-label label-subtitle">状态:</label>
+                    <div class="col-xs-3" style="padding-right: 0">
+                        <input type="text" class="form-control text-center" id="openingStateList">
+                        <span class="fa fa-caret-down form-control-feedback dpicon"></span>
+                        <label class="dataTips">原始状态：<small id="old_openingState"></small></label>
+                    </div>
+                    <!--<div id="openingStateLock" class="form-control-static fa fa-lock fa-lg" style="line-height:20px;float: left;padding:10px 15px;"></div>
+                    <div id="openingStateUnlock" class="form-control-static fa fa-unlock fa-lg" style="display:none;line-height:20px;float: left;padding:10px 15px"></div>-->
+                </div>
+                <div class="form-group">
+                    <label for="averageInput" class="control-label label-subtitle">人均:</label>
+                    <span class="form-control-static" style="line-height: 36px">&nbsp;元</span>
+                    <div class="col-xs-1" style="padding-right:0px;">
+                        <input id="averageInput" type="text" class="form-control numDots"/>
+                    </div>
+                </div>
+                <label class="dataTips" style="margin-left:55px;margin-top:-28px">原始数据：<small id="old_numDots"></small></label>
+            </div>
+
+            <hr/>
+            <div class="col-xs-12 bottomBtn" style="padding:20px 0 50px 0;">
+                <button class="btn btn-lg mybtn VBtn" type="button" id="passBtn"
+                        data-toggle="modal" data-target="#modalPass">通&nbsp;过</button>
+                <button class="btn btn-lg mybtn VBtn" type="button" id="reject" data-toggle="modal" data-target="#rejectModal" style="background: #c82122">驳回</button>
+                <button class="btn btn-lg mybtn" type="button" id="return">返&nbsp;回</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--模态框-->
+<!--通过-->
+<div id="modalPass" class="modal fade" role="dialog" data-dismiss="modal" data-backdrop="static"
+     aria-labelledby="myModal" aria-hidden="true">
+    <div class="modal-dialog" style="width:400px;min-width:400px;background-color:#f3f3f3">
+        <div class="modal-header" style="border-bottom: none;">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        </div>
+        <div class="modal-body" style="padding-top:0;font-size:15px;">
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <h4><b>确定商家信息修改审核通过？</b></h4>
+                    <div class="col-xs-12 text-center" style="margin-top:50px;margin-bottom:40px;">
+                        <button type="button" id="busEpass" class="btn mybtn"
+                                style="background-color:#f4d702;color:#000000;margin-right:20px">确&nbsp;认</button>
+                        <button type="button" class="btn mybtn" data-dismiss="modal" aria-hidden="true">取&nbsp;消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--驳回-->
+<div id="my_modal" class="modal fade" role="dialog" data-dismiss="modal" data-backdrop="static"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:490px;min-width:490px;">
+        <div class="modal-content" id="modalcontent">
+            <div class="modal-header" style="border-bottom: none;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body" style="padding-top:0;font-size:15px">
+                <div class="container-fluid">
+                    <div class="row text-left">
+                        <p style="text-align: justify"><b>亲爱的审核员，您未通过“<span id="shopName"></span>（申请编号:
+                            <span id="rejectNum"></span>
+                            ）"的申请审核，请输入未通过审核原因</b>
+                        </p>
+                        <p style="margin-top:20px"><b>未通过原因：</b></p>
+                        <form id="modifyInfo" class="form-horizontal" role="form" style="font-size:14px">
+                            <div class="col-xs-5 radio radio-inline" style="padding-right:0;margin-left:10px">
+                                <input type="radio" name="reasons" id="options1" value="商家信息有误/不真实" checked="checked">
+                                <label for="options1" style="margin-left: -10px">商家信息有误/不真实</label>
+                            </div>
+                            <div class="col-xs-6  radio radio-inline" style="padding-right: 0">
+                                <input type="radio" name="reasons" id="options2" value="商家资质信息审核不通过">
+                                <label for="options2" style="margin-left:-10px">商家资质信息审核不通过</label>
+                            </div>
+                            <div class="col-xs-6  radio radio-inline" style="padding-right:0;margin-left:10px">
+                                <input type="radio" name="reasons" id="options3" value="负责人信息审核不通过">
+                                <label for="options3" style="margin-left: -10px">负责人信息审核不通过</label>
+                            </div>
+                            <div class="col-xs-5 radio radio-inline" style="padding-right:0;margin-left:-24px">
+                                <input type="radio" name="reasons" id="options4" value="">
+                                <label for="options4" style="margin-left: -10px">其他（请填写）</label>
+                            </div>
+                            <div class="col-xs-12" style="padding-top: 10px;padding-left: 2px;">
+                        <textarea id="otherReasons" class="col-xs-12" rows="4" disabled="disabled"
+                                  style="font-size:12px;padding:6px 8px;overflow:hidden;" maxlength="100"></textarea>
+                            </div>
+                            <div class="col-xs-12 text-center" style="margin-top:50px;margin-bottom:15px;">
+                                <button id="sendReasonsBtn" type="button" class="btn mybtn" style="padding:6px 20px;margin-right:18px;font-size:15px;letter-spacing:4px;">发&nbsp;送</button>
+                                <button id="cancelBtn" type="button" class="btn mybtn" data-dismiss="modal" aria-hidden="true" style="padding:6px 20px;font-size:15px;font-size:15px;letter-spacing:4px;">取&nbsp;消</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../../js/bmap.js"></script>
+<script type="text/javascript" src="../../js/common/interface.js"></script>
+<script type="text/javascript" src="../../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../../js/common/infoFilling.js"></script>
+<script type="text/javascript" src="../../js/my/busVerifyInfoEdit.js"></script>
+</body>
+</html>

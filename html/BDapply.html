@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../css/font-awesome.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        .BDdropdownBtn{
+            width:100%;
+            border:1px solid #b5b5b5;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            background:#ffffff;
+            padding-top:5px;
+            padding-bottom:5px;
+            padding-left: 15px;
+            text-align:left;
+        }
+        .dropdown-menu li a{
+            padding-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container htmlWrap">
+    <div class="row searchForm">
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="control-label">日期：</label>
+                <div class="input-group">
+                    <input type="text" class="form-control datepicker dateFrom">
+                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                </div>
+
+                <label class="control-label">&emsp;至&emsp;</label>
+                <div class="input-group">
+                    <input type="text" class="form-control datepicker dateTo">
+                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="applyNumInput" class="control-label">申请号：</label>
+                <div class="input-group">
+                    <input id="applyNumInput" type="text" class="form-control"/>
+                    <div class="input-group-addon"><span class="fa fa-search"></span></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="stateList" class="control-label">状态：</label>
+                <select id="stateList" class="text-center">
+                    <option value="全部">全部</option>
+                    <option value="已分配">已分配</option>
+                    <option value="未分配">未分配</option>
+                </select>
+            </div>
+            <div class="form-group" id="BDdiv">
+                <label for="BDList" class="control-label">BD：</label>
+                <select id="BDList" class="text-center">
+                    <option value="全部">全部</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-right:2px">
+                <button id="refreshDatas" type="button" class="btn mybtn"
+                        style="padding:4px 12px;">刷新数据
+                </button>
+            </div>
+        </form>
+    </div>
+
+
+    <!--用户信息表格详细-->
+    <div class="row">
+        <table id="assignTable" class="table table-bordered text-center">
+            <thead>
+            <tr>
+                <th>申请号</th>
+                <th>商家名称</th>
+                <th>城市</th>
+                <th>商圈</th>
+                <th>BD</th>
+                <th>提交时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/plugins/moment.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/common/interface.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/my/BDapply.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <style>
+        body{
+            font-size:14px;
+        }
+        h4{
+            margin-left: 15px;
+        }
+        .modal-body button{
+            padding:6px 20px;
+            margin-right:18px;
+            font-size:15px;
+            letter-spacing:4px;
+        }
+    </style>
+</head>
+
+<body>
+<!--退款-->
+<div class="modal-header" style="border-bottom: none;">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="row text-center">
+            <h4><b>是否退款该团购券？</b></h4>
+            <br/>
+            <div class="col-xs-12 text-center">
+              <textarea id="refundReasons" class="col-xs-12" rows="6"
+                        style="font-size:12px;padding:6px 8px;overflow:hidden;"></textarea>
+            </div>
+            <div class="col-xs-12 text-center" style="margin-bottom:40px;">
+                <br/><br/>
+                <button id="refundOper" type="button" class="btn mybtn">确&nbsp;认</button>
+                <button type="button" class="btn mybtn" data-dismiss="modal"
+                        aria-hidden="true" style="background-color:#cb0000;color: #ffffff;">取&nbsp;消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/modal/setVModal.js"></script>
+</body>
+
+</html>
+

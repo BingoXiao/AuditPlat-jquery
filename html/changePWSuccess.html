@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/font-awesome.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container-fluid">
+
+    <div class="row" style="margin-top: 130px;">
+        <div class="col-xs-6 col-xs-offset-3 text-center"
+             style="border: 1px solid #c9c9c9;padding:150px 60px;">
+            <span class="fa fa-check-circle fa-4x"></span>
+            <span style="font-size:25px;margin-left: 20px;position: relative;bottom:8px;">修改成功</span>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script>
+    $(function () {
+        sessionStorage.clear();
+        setTimeout(function () {
+            top.window.location.href="../login.html";
+        },1000);
+    });
+</script>
+</body>
+</html>
+

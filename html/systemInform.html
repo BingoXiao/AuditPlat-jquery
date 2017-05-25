@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/font-awesome.css">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <script type="text/JavaScript" src="../js/ckeditor/ckeditor.js"></script>
+
+    <style>
+        .label-subtitle {
+            font-size:16px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container htmlWrap">
+
+    <div class="row" style="margin-top:40px">
+        <div class="colxs-12" style="padding-left: 0">
+            <hr class="navline"/>
+            <ul class="nav nav-pills List">
+                <li id="sysInfo" class="active"><a href="#">系统公告</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:20px;font-size: 14px;">
+        <div id="notiveForm" class="form-horizontal">
+            <div class="form-group" style="margin-left:6px;margin-top: 20px;margin-bottom:30px">
+                <label for="titleInput" class="control-label label-subtitle">主题:</label>
+                <div class="col-xs-11">
+                    <input id="titleInput" type="text" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-left:63px;margin-top:20px;margin-bottom:30px">
+                <label for="titleInput" class="control-label sr-only label-subtitle">文本编辑</label>
+
+                <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
+                <script>
+                    CKEDITOR.replace('editor1',{height: '180px', width:"94%",toolbar:"MyToolbar"});
+                </script>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-6 text-center">
+                    <button id="send" type="submit" class="btn mybtn" style="width: 100px;">发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/common/interface.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/my/systemInfo.js"></script>
+</body>
+</html>
+

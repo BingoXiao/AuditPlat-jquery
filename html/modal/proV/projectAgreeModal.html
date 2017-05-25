@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <style>
+        body{
+            font-size:14px;
+        }
+        h4{
+            margin-left: 15px;
+        }
+        .modal-body button{
+            padding:6px 20px;
+            margin-right:18px;
+            font-size:15px;
+            letter-spacing:4px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--同意-->
+    <div class="modal-header" style="display:none">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    </div>
+    <div class="modal-body" style="padding-top:80px;">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <h4><b id="proTitle">同意该项目审核？</b></h4>
+                <script>
+                    if(sessionStorage.getItem('topListp')=="onlineApply"){
+                        $("#proTitle").html("同意该项目审核？");
+                    }else if(sessionStorage.getItem('topListp')=="modifyApply"){
+                        $("#proTitle").html("同意项目修改？");
+                    }else if(sessionStorage.getItem('topListp')=="offlineApply"){
+                        $("#proTitle").html("同意项目下线申请？");
+                    }
+                </script>
+                <div class="col-xs-12 text-center" style="margin-top:80px;margin-bottom:40px;">
+                    <button type="button" class="btn mybtn confirmAgree">确&nbsp;认</button>
+                    <button type="button" class="btn mybtn" data-dismiss="modal" aria-hidden="true" style="background-color:#cb0000;color: #ffffff;">取&nbsp;消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.validate.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/modal/proV.js"></script>
+</body>
+
+</html>
+

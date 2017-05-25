@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <!-- Le styles -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/font-awesome.css" rel="stylesheet">
+    <link href="../css/checkbox.css" rel="stylesheet">
+    <link href="../css/bootstrap-switch.css" rel="stylesheet">
+
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        #accoutManageTable tbody td:nth-child(4) img {
+            display: inline-block;
+            margin-left: 2px;
+            margin-right: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .prioritiesCheckbox, .editPrioritiesCheckbox {
+            color: #919191;
+        }
+
+        .prioritiesCheckbox img {
+            vertical-align: text-top;
+            margin-left: 6px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="container htmlWrap">
+    <div class="row searchForm">
+        <div class="form-inline">
+            <div class="form-group">
+                <label for="userInput" class="control-label">用户账号：</label>
+                <div class="input-group">
+                    <input id="userInput" type="text" class="form-control"/>
+                    <div class="input-group-addon"><span class="fa fa-search"></span></div>
+                </div>
+            </div>
+            <div class="form-group stateFilter">
+                <label for="stateList" class="control-label">状态：</label>
+                <select id="stateList" class="text-center">
+                    <option value="ALL">全部</option>
+                    <option value="F">冻结</option>
+                    <option value="T">启用</option>
+                </select>
+            </div>
+
+            <div class="col-xs-12 editBtn" style="margin-top:0;margin-bottom:10px">
+                <div class="row">
+                    <div class="col-xs-6" style="padding-left:1px">
+                        <button id="enableBtn" type="button" class="btn mybtn" style="margin-right:10px">启用</button>
+                        <button id="frozenBtn" type="button" class="btn mybtn" style="margin-right:10px">冻结</button>
+                        <button id="deleteBtn" type="button" class="btn mybtn">删除</button>
+                    </div>
+
+                    <div class="col-xs-6 text-right" style="padding-right:3px">
+                        <button id="addUser" type="button" class="btn pull-right mybtn">添加用户</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--用户信息表格详细-->
+    <div class="row">
+        <table id="accoutManageTable" class="table table-bordered text-center">
+            <thead>
+            <tr>
+                <th>&emsp;</th>
+                <th>姓名</th>
+                <th>用户账号</th>
+                <th>已开通服务</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="accountDetailList">
+
+            </tbody>
+        </table>
+    </div>
+
+    <!--页码区域-->
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4 text-center">
+            <ul class="pagination pageIndex">
+                <li id="first"><a>&laquo;</a></li>
+                <li id="previous"><a>&lsaquo;</a></li>
+                <li class="active"><a id="pageIndex">1</a></li>
+                <li id="next"><a>&rsaquo;</a></li>
+                <li id="last"><a>&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap-switch.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.validate.js"></script>
+<script type="text/javascript" src="../js/common/interface.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/my/accountData.js"></script>
+</body>
+</html>
+

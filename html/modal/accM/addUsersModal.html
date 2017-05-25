@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <style>
+        .form-group{
+            margin-bottom:25px;
+        }
+        .prioritiesCheckbox,.editPrioritiesCheckbox{
+            color: #919191;
+        }
+        .prioritiesCheckbox img{
+            vertical-align:text-top;
+            margin-left: 6px;
+        }
+
+    </style>
+</head>
+
+<body style="width:100%;" id="account111">
+
+<!--添加用户-->
+    <div class="modal-header" style="border-bottom: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title text-center"
+            style="font-weight: bold;font-size: 16px;padding-bottom:0;padding-top: 20px;">
+            &emsp;&emsp;&emsp;添加用户</h4>
+    </div>
+
+    <div class="modal-body" style="padding-right:50px">
+        <div class="container-fluid">
+            <div class="row">
+                <form id="addForm" class="form-horizontal" role="form" autocomplete="false">
+                    <div class="form-group">
+                        <label for="username" class="col-md-2 control-label font-title">姓名:</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="username" name="username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="account" class="col-md-2 control-label font-title">账号:</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="account" name="account">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-md-2 control-label font-title">密码:</label>
+                        <div class="col-md-10">
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+                    </div>
+
+                    <div class="form-group prioritiesCheckbox" style="font-size:13px;">
+                        <div class="row">
+                            <label class="col-xs-2 control-label font-title" style="padding-right:0;text-align:center;">权限:</label>
+                            <div class="col-xs-10 btn-group checkboxPriority" style="padding-left:0;text-align: left;">
+                                <div class="checkbox checkbox-inline">
+                                    <img style="max-width:18%;position: absolute;left: 20px;" src="../img/11.png"/>
+                                    <input type="checkbox" name="priority" id="priority1" value="0">
+                                    <label for="priority1" style="padding-left:30px;">商家审核</label>
+                                </div>
+
+                                <div class="checkbox checkbox-inline">
+                                    <img style="max-width:14%;position: absolute;left: 20px;" src="../img/12.png"/>
+                                    <input type="checkbox" name="priority" id="priority2" value="0">
+                                    <label for="priority2" style="padding-left:25px;">项目审核</label>
+                                </div>
+
+                                <div class="checkbox checkbox-inline">
+                                    <img style="max-width:21%;position: absolute;left:19px;bottom:4px;" src="../img/13.png"/>
+                                    <input type="checkbox" name="priority" id="priority3" value="0">
+                                    <label for="priority3" style="padding-left:35px;">结款审核</label>
+                                </div>
+
+                                <div class="checkbox checkbox-inline" style="margin-left: 0">
+                                    <img style="max-width:15%;position: absolute;left:20px;" src="../img/14.png"/>
+                                    <input type="checkbox" name="priority" id="priority4" value="0">
+                                    <label for="priority4" style="padding-left:30px;">商家申请</label>
+                                </div>
+
+                                <div class="checkbox checkbox-inline">
+                                    <img style="max-width:16%;position: absolute;left:20px;" src="../img/15.png"/>
+                                    <input type="checkbox" name="priority" id="priority5" value="0">
+                                    <label for="priority5" style="padding-left:26px;">商家注册</label>
+                                </div>
+
+                                <div class="checkbox checkbox-inline">
+                                    <img style="max-width:19%;position:absolute;left:19px;padding-top:3px"
+                                         src="../img/16.png"/>
+                                    <input type="checkbox" name="priority" id="priority6" value="0">
+                                    <label for="priority6" style="padding-left:33px;">项目列表</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-4 col-xs-12 text-center">
+                        <button id="addAccount" type="button" class="btn mybtn"
+                                style="margin-top: 10px;margin-bottom: 20px;width: 80px;color:#fad502;">添&nbsp;加</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.validate.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.form.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/my/accountData.js"></script>
+<script type="text/javascript" src="../js/modal/addUsersModal.js"></script>
+
+</body>
+</html>

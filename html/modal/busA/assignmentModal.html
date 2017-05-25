@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <style>
+        .BDdropdownBtn{
+            width:100%;
+            border:1px solid #b5b5b5;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            background:#ffffff;
+            padding-top:5px;
+            padding-bottom:5px;
+            padding-left: 15px;
+            text-align:left;
+        }
+        .dropdown-menu li a{
+            padding-left: 15px;
+        }
+    </style>
+</head>
+
+<body style="width: 100%;">
+
+<!--分配任务-->
+    <div class="modal-header" style="border-bottom: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title text-center"
+            style="font-weight: bold;font-size: 16px;margin-top:50px;margin-bottom:10px;">分配任务</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <form id="modifyInfo" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="allBD" class="col-xs-2 col-xs-offset-1 control-label">BD:</label>
+                        <div class="col-xs-8 text-center">
+                            <select id="allBD" style="width:100%;padding:4px 9px;border:1px solid #cccccc;">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-4 col-xs-12 text-center">
+                        <button id="assignBtn" type="button" class="btn mybtn" style="margin-top:40px;margin-bottom:30px;width:80px;color:#fad502;">分&nbsp;配</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/modal/busA.js"></script>
+</body>
+</html>
+

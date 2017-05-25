@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="container-fluid" style="min-width: 1080px">
+    <!--头部-->
+    <div class="row" data-background-color="dark" style="height:60px;">
+        <table class="table header" style="margin-top:0;margin-bottom:0;width:100%">
+            <tr>
+                <td>
+                    <div class="div-img">
+                        <img id="jmicon" src="../../img/logo.png" class="img-header-logo" alt="近脉商家中心"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="row" style="margin-top: 130px;">
+        <div class="col-xs-6 col-xs-offset-3 text-center">
+            <span class="fa fa-check-circle fa-4x"></span>
+            <span style="font-size:25px;margin-left: 20px;position: relative;bottom:8px;">审核成功</span>
+        </div>
+    </div>
+    <div class="row text-center" style="font-size:20px;margin-top:25px">
+        <p>自动返回系统中&nbsp;&hellip;&hellip;</p>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../../js/plugins/bootstrap.js"></script>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            window.location.href='../checkIndex.html#busVerify';
+        },1000);
+    });
+
+</script>
+</body>
+</html>
+

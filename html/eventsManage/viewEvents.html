@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="container htmlWrap">
+
+    <div class="row" style="margin-top:40px">
+        <div class="col-xs-12" style="padding-left: 0">
+            <hr class="navline"/>
+            <ul class="nav nav-pills List">
+                <li id="CouponsTitle" class="active"><a href="javascript:;">查看活动</a></li>
+            </ul>
+
+            <div class="row" style="position:absolute;right:36px;top:-10px;">
+                <button class="btn mybtn" id="returnTo" style="padding:3px 12px">返回活动列表</button>
+            </div>
+        </div>
+    </div>
+    <br/>
+
+    <div class="row" id="myCouponsDiv">
+        <!--用户信息表格详细-->
+        <div class="col-xs-12">
+            <table id="eventsTable" class="row table table-bordered text-center">
+                <thead>
+                <tr>
+                    <th>类型</th>
+                    <th>名称</th>
+                    <th>优惠</th>
+                    <th>数量</th>
+                    <th>门店</th>
+                    <th>有效时间</th>
+                    <th>累计抵用金额</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../../js/plugins/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../../js/common/interface.js"></script>
+<script type="text/javascript" src="../../js/common/dataProcessing.js"></script>
+<script>
+    $(function () {
+        //获取url的参数
+        var url = decodeURIComponent($('#rightIframe', window.top.document).attr('src'));
+        var loc = url.substring(url.indexOf("?"), url.length);
+        var id = common.getUrlParameters(loc, 'id');
+        var res = [];
+
+        table = $('#eventsTable').DataTable({
+            ajax: {
+                url: EVENTS_VIEWEVENT_URL(id),
+                type: EVENTS_VIEWEVENT_TYPE,
+                async:false,
+                dataSrc: function (data) {
+                    if (data.success) {
+                        return res = data.content.clist;
+                    }
+                }
+            },
+            "data": res,
+            "dom": 't<"bottom info"i>',
+            "autoWidth": false,
+            "ordering": false,
+            "lengthChange": false,
+            "pageLength":30,
+            "language": {
+                "lengthMenu": "每页 _MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "infoEmpty": "无记录",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "info": "共有 _MAX_ 条, 每页显示：10条"
+            },
+            "columnDefs": [
+                {    //第1列类型
+                    "targets": 0,
+                    "data": 'type',
+                    "width": '10%'
+                },
+
+                {     //第2列名称
+                    "targets": 1,
+                    "data": 'name',
+                    "width": '20%'
+                },
+
+                {     //第3列优惠
+                    "targets": 2,
+                    "data": null,
+                    "width": '20%',
+                    "render": function (data, type, full, meta) {
+                        return "满<span>"+data.amount_full+"</span>元减<span>"
+                                +data.amount_cut+"</span>元";
+                    }
+                },
+
+                {     //第4列数量
+                    "targets": 3,
+                    "data": 'counts',
+                    "width": '10%'
+                },
+
+                {     //第5列门店
+                    "targets": 4,
+                    "data": null,
+                    "width": '15%',
+                    "render": function (data, type, full, meta) {
+                        var str = "";
+                        $.each(data.buses, function (index,value) {
+                           str += "<div>"+value+"</div>";
+                        });
+                        return str;
+                    }
+                },
+
+                {     //第6列有效时间
+                    "targets": 5,
+                    "data": null,
+                    "width": '15%',
+                    "render": function (data, type, full, meta) {
+                        var begin = (data.valid_startdate).replace(/-/g, "");
+                        var end = (data.valid_enddate).replace(/-/g, "");
+                        if (data.valid_startdate == "" && data.valid_enddate == "") {
+                            return "24小时";
+                        } else {
+                            return begin + "~" + end;
+                        }
+                    }
+
+                },
+                {     //第7列累计抵用金额
+                    "targets": 6,
+                    "data": null,
+                    "width": '10%',
+                    "render": function (data, type, full, meta) {
+                        return data.amount + "元";
+                    }
+                }
+            ]
+        });
+
+        $("#returnTo").on("click",function(){
+            $('#rightIframe',window.top.document).attr('src','../EMeventsList.html');
+        });
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css" rel="stylesheet">
+    <link href="../../css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../../css/checkbox.css" rel="stylesheet">
+
+    <link href="../../css/style.css" rel="stylesheet">
+
+    <script type="text/JavaScript" src="../../js/ckeditor/ckeditor.js"></script>
+
+    <style>
+        body{
+            font-size:14px;
+        }
+        h4{
+            margin-left: 15px;
+        }
+        .form-group{
+            margin: 25px 0;
+            padding-left: 0;
+        }
+        .img-upload{
+            width: 140px;
+            height: 140px;
+            vertical-align: baseline;
+            border:2px solid #494949;
+            box-shadow: 0 0 2px 0 rgb(70, 70, 70);
+            display: inline-block;
+            margin: 0;
+        }
+        .fillIn{
+            border: 1px solid rgb(210, 212, 215);
+            padding:3px 13px;
+        }
+        .modal-body button{
+            padding:6px 20px;
+            margin-right:18px;
+            font-size:15px;
+            letter-spacing:4px;
+        }
+        .text-left{
+            font-size: 16px;
+        }
+        .div-time{
+            display:block;
+            font-size: 12px;
+            border: 1px solid #bcbcbc;
+            padding: 10px;
+        }
+        .table{
+            font-size:13px;
+            color:#95979a;
+        }
+        .buytable tbody tr td:first-child{
+            vertical-align: middle;
+            font-size: 15px;
+        }
+        .buytable tbody tr td .radio{
+            margin: 10px 2px;
+        }
+        .buytable input[type='text']{
+            width: 50px;
+            line-height: 20px;
+            border:1px solid #d1d1d1;
+            padding:1px 8px;
+        }
+        .buytable .label-subtitle{
+            margin-left:0;
+        }
+        .useTime input{
+            height: 22px;
+            font-size: 12px;
+        }
+        .dateInput input[type='text']{
+            width:160px;
+        }
+        .orderdTable>tbody>tr>td{
+            vertical-align: middle;
+            padding-top:13px;
+            padding-bottom:13px;
+            padding-left: 20px;
+        }
+        .orderdTable>tbody>tr:nth-child(even){
+            font-size: 13px;
+        }
+        .orderdTable .addRow{
+            line-height: 30px;
+        }
+        .food{
+            font-size: 15px;
+            margin-right: 10px;
+        }
+        .fillIn{
+            padding:3px 60px
+        }
+        textarea{
+            line-height:22px;
+            padding:10px 12px;
+            font-size:13px;
+            border: 1px solid #dddddd;
+        }
+        .bottomBtn .btn{
+            padding:10px 33px;
+            margin:0 13px 0 0;
+        }
+        .dpicon,.iconT{
+            color: #cccccc;
+            line-height: 34px;
+        }
+        .iconT{
+            line-height: 30px;
+        }
+        .fa-lock,.fa-unlock{
+            line-height:16px;
+            float: left;
+            padding:10px;
+            cursor:pointer;
+        }
+        .circleDay {
+            float: left;
+            margin-left:0;
+            font-size: 14px;
+            line-height: 34px;
+        }
+        .cke_editor_editor2_dialog>table{
+            border: 1px solid #ababab;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <!--顶部菜单-->
+    <div class="row" style="margin-top:40px">
+        <div class="col-xs-12" style="padding-left: 0">
+            <hr  class="navline"/>
+            <ul class="nav nav-pills List" id="proInnerList">
+                <li id="planInfoNav" class="active"><a href="javascript:;">套餐信息</a></li>
+                <li id="JMPointNav" style="margin-left: 15px"><a href="javascript:;">脉点</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!--内容-->
+    <div id="row content" style="padding-top:30px">
+        <!--套餐信息详情-->
+        <div id="planInfo" class="row center-block">
+            <div id="registerFrom" class="row form-horizontal">
+                <div id="Store" class="row">
+                    <h4>门店信息</h4>
+                    <div class="shopInfo" style="margin-bottom:20px">
+                        <table id="projectDetailTable" class="table table-bordered text-center" style="width:75%;margin-left: 20px;">
+                            <thead>
+                            <tr>
+                                <th class="col-xs-3">门店名称</th>
+                                <th class="col-xs-2">门店图</th>
+                                <th class="col-xs-4">门店地址</th>
+                                <th class="col-xs-3">门店电话</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                        <b id="more" style="display:none;padding:10px 0 0 20px;cursor: pointer">更多</b>
+                    </div>
+                </div>
+
+                <div id="projects" class="row">
+                    <h4>项目信息</h4>
+                    <div style="padding-left:10px">
+                        <div class="form-group">
+                            <label class="control-label label-subtitle">项目分类:</label>
+                            <div class="col-xs-2" style="padding-right: 0">
+                                <input type="text" class="form-control" id="repast" placeholder="美食">
+                                <span class="fa fa-caret-down form-control-feedback dpicon"></span>
+                            </div>
+                            <div class="col-xs-2" style="padding-right: 0">
+                                <input type="text" class="form-control" id="category">
+                                <span class="fa fa-caret-down form-control-feedback dpicon"></span>
+                            </div>
+                            <div class="col-xs-2" style="padding-right: 0">
+                                <input type="text" class="form-control" id="small_category">
+                                <span class="fa fa-caret-down form-control-feedback dpicon"></span>
+                            </div>
+                            <label class="control-label label-subtitle">佣金比例:</label>
+                            <div class="col-xs-1" style="padding-right: 0">
+                                <input type="text" class="form-control" id="rate">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="height: 140px;">
+                            <label class="control-label label-subtitle">项目图片:</label>
+                            <div id="projectPic" class="col-xs-12" style="margin-top:25px;margin-bottom:40px;">
+                                <div class="col-xs-2 pp" style="display: none">
+                                    <img src="" alt="上传图片" class="img-upload">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="PNameInput" class="control-label label-subtitle">项目名称:</label>
+                            <div class="col-xs-2">
+                                <input id="PNameInput" type="text" class="form-control"/>
+                            </div>
+                            <label for="peopleInput" class="control-label label-subtitle">用餐人数:</label>
+                            <div class="col-xs-2">
+                                <input id="peopleInput" type="text" class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-10 form-group" style="margin-top: 0;margin-bottom: 0;">
+                            <label class="control-label label-subtitle">菜单组合:</label>
+                            <div class="col-xs-12">
+                                <table id="ordered" class="table orderdTable" style="border:1px solid rgb(210, 212, 215);">
+                                    <tbody id="orderContent">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 form-group">
+                            <label for="originalPriceInput" class="control-label label-subtitle">原价:</label>
+                            <div class="col-xs-2">
+                                <input id="originalPriceInput" type="text" class="form-control"/>
+                            </div>
+                            <label for="preferentialPriceInput" class="control-label label-subtitle">优惠价:</label>
+                            <div class="col-xs-2">
+                                <input id="preferentialPriceInput" type="text" class="form-control"/>
+                            </div>
+                            <label for="settlementPriceInput" class="control-label label-subtitle">结算价:</label>
+                            <div class="col-xs-2">
+                                <input id="settlementPriceInput" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="project" class="row">
+                    <h4>购买须知</h4>
+                    <div class="col-xs-10">
+                        <table class="table table-bordered buytable" id="buy_info">
+                            <tbody>
+                            <tr>
+                                <td colspan="2" style="border-top-color: white;
+                                    border-left-color: white;border-right-color: white;">
+                                    <label class="control-label label-subtitle">项目有效期</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" tabindex="1">
+                                    <strong class="text-stress">*</strong> 团购券有效期
+                                </td>
+                                <td class="td_indent">
+                                    <div class="radio radio-input">
+                                        <input name="expire_date" id="expire_date0" type="radio">
+                                        <label for="expire_date0">自上线之日起</label>
+                                        <input id="expire_date0_info" class="input-time" type="text">&nbsp;个月
+                                    </div>
+                                    <div class="radio radio-input">
+                                        <input name="expire_date" id="expire_date1" type="radio">
+                                        <label for="expire_date1">自上线之日起</label>
+                                        <input id="expire_date1_info" class="input-time" type="text">&nbsp;天
+                                    </div>
+                                    <div class="radio radio-input">
+                                        <input name="expire_date" id="expire_date2" type="radio">
+                                        <label for="expire_date2">自上线之日起至</label>
+                                        <input id="expire_date2_info" class="input-time" type="text" style="width: 100px;">&nbsp;23:59:59
+                                    </div>
+                                    <small>团购券有效期是指可接待团购用户的有效期</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" tabindex="2">
+                                    <strong class="text-stress">*</strong>不可用日期
+                                </td>
+                                <td>
+                                    <div class="radio radio-inline">
+                                        <input name="exclude_use_date" id="exclude_use_date0" type="radio">
+                                        <label for="exclude_use_date0">所有日期都可用</label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input name="exclude_use_date" id="exclude_use_date1" type="radio">
+                                        <label for="exclude_use_date1">部分日期可用</label>
+                                    </div>
+                                    <div class="div-time" id="exclude_use_date_info" style="display:none;">
+                                        <div id="week">
+                                            <p style="font-size:14px;">
+                                                指定每周不可用时间
+                                            </p>
+                                            <div class="checkbox checkbox-inline">
+                                                <input class="styled" type="checkbox" value="0">
+                                                <label>周一</label>
+                                            </div>
+                                            <div class="checkbox checkbox-inline">
+                                                <input class="styled" type="checkbox" value="1">
+                                                <label>周二</label>
+                                            </div>
+                                            <div class="checkbox checkbox-inline">
+                                                <input class="styled" type="checkbox" value="2">
+                                                <label>周三</label>
+                                            </div>
+                                            <div class="checkbox checkbox-inline">
+                                                <input class="styled" type="checkbox" value="3">
+                                                <label>周四</label>
+                                            </div>
+                                            <div class="checkbox checkbox-inline">
+                                                <input class="styled" type="checkbox" value="4">
+                                                <label>周五</label>
+                                            </div>
+                                            <div class="checkbox checkbox-inline">
+                                                <input class="styled" type="checkbox" value="5">
+                                                <label>周六</label>
+                                            </div>
+                                            <div class="checkbox checkbox-inline">
+                                                <input class="styled" type="checkbox" value="6">
+                                                <label>周日</label>
+                                            </div>
+                                        </div>
+                                        <!--<br/><br/>
+                                                    <span class="hand" style="font-size: 16px;" onclick="get_legal_holidays()">
+                                                      法定节假日（元旦、春节、清明节、劳动节、端午节、中秋节和国庆节）
+                                                        </span>-->
+                                        <br/>
+                                        <div id="useDate">
+                                            <div class="form-inline disabledDate" style="margin-bottom:13px">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control">
+                                            <span class="input-group-addon">
+                                                <small class="glyphicon glyphicon-calendar"></small>
+                                            </span>
+                                                </div>
+                                                <b>&emsp;至&emsp;</b>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control">
+                                            <span class="input-group-addon">
+                                                <small class="glyphicon glyphicon-calendar"></small>
+                                            </span>
+                                                </div>
+                                                <div class="input-group festival" style="margin-left:10px"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" tabindex="3">
+                                    <strong class="text-stress">*</strong> 是否支持自动延
+                                    <br>
+                                    长团购券有效期
+                                </td>
+                                <td>
+                                    <div class="radio radio-inline">
+                                        <input name="expire_date_auto_extend" id="expire_date_auto_extend0" type="radio">
+                                        <label for="expire_date_auto_extend0">是，默认每次延期30天</label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input name="expire_date_auto_extend" id="expire_date_auto_extend1" type="radio">
+                                        <label for="expire_date_auto_extend1">否，不支持</label>
+                                    </div>
+                                    <br>
+                                    <small>
+                                        提示：当您选择“是”的时候，系统将默认每30天自动延期；
+                                        如选择“否”则该项目不会自动延期，如要延期只能手动延期
+                                    </small>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2" style="border-top-color: white;
+                                    border-left-color: white;border-right-color: white;">
+                                    <label class="control-label label-subtitle">消费时间</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" tabindex="4">
+                                    <strong class="text-stress">*</strong>使用时间
+                                </td>
+                                <td>
+                                    <div class="radio radio-inline">
+                                        <input name="use_time" id="use_time0" type="radio">
+                                        <label for="use_time0">
+                                            24小时
+                                        </label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input name="use_time" id="use_time1" type="radio">
+                                        <label for="use_time1">
+                                            部分时间可使用
+                                        </label>
+                                    </div>
+                                    <div class="div-time" id="use_time_info" style="display:none;">
+                                        <p style="font-size:14px;">指定可用时间：</p>
+                                        <!--<div id="time_info">
+                                            <input id="time_num" name="time_num" value="1" type="hidden">
+                                            <div data-type="hour_minute">
+                                                <select data-type="hour" data-time="start"> <option value="00">00</option> <option value="01">01</option> <option value="02">02</option> <option value="03">03</option> <option value="04">04</option> <option value="05">05</option> <option value="06">06</option> <option value="07">07</option> <option value="08">08</option> <option value="09">09</option> <option value="10">10</option> <option value="11">11</option> <option value="12">12</option> <option value="13">13</option> <option value="14">14</option> <option value="15">15</option> <option value="16">16</option> <option value="17">17</option> <option value="18">18</option> <option value="19">19</option> <option value="20">20</option> <option value="21">21</option> <option value="22">22</option> <option value="23">23</option> <option value="24">24</option></select>
+                                                &emsp;点&emsp;
+                                                <select data-type="minute" data-time="start"> <option value="00">00</option> <option value="15">15</option> <option value="30">30</option> <option value="45">45</option></select>
+                                                &emsp;分&emsp;至&emsp;
+                                                <select data-type="hour" data-time="end"> <option value="00">00</option> <option value="01">01</option> <option value="02">02</option> <option value="03">03</option> <option value="04">04</option> <option value="05">05</option> <option value="06">06</option> <option value="07">07</option> <option value="08">08</option> <option value="09">09</option> <option value="10">10</option> <option value="11">11</option> <option value="12">12</option> <option value="13">13</option> <option value="14">14</option> <option value="15">15</option> <option value="16">16</option> <option value="17">17</option> <option value="18">18</option> <option value="19">19</option> <option value="20">20</option> <option value="21">21</option> <option value="22">22</option> <option value="23">23</option> <option value="24">24</option></select>
+                                                &emsp;点&emsp;
+                                                <select data-type="minute" data-time="end"> <option value="00">00</option> <option value="15">15</option> <option value="30">30</option> <option value="45">45</option></select>
+                                                &emsp;分&emsp;
+                                            </div>
+                                        </div>
+                                                    <span class="hand" id="add_time">
+                                                        <i class="icon-plus-sign-alt" style="font-size: 16px;"></i> 添加</span>
+                                        <br>-->
+                                        <div id="useTime">
+                                            <div class="form-inline useTime" style="margin-bottom: 15px">
+                                        <span class="col-xs-1 input-group input-group-sm">
+                                            <input type="text" class="form-control">
+                                            <small class="fa fa-caret-down form-control-feedback iconT"></small>
+                                        </span>
+                                                <b class="form-control-static">&emsp;点&emsp;</b>
+                                        <span class="col-xs-1 input-group input-group-sm">
+                                            <input type="text" class="form-control">
+                                            <small class="fa fa-caret-down form-control-feedback iconT"></small>
+                                        </span>
+                                                <b class="form-control-static">&emsp;分&emsp;至&emsp;</b>
+                                        <span class="col-xs-1 input-group input-group-sm">
+                                            <input type="text" class="form-control">
+                                            <small class="fa fa-caret-down form-control-feedback iconT"></small>
+                                        </span>
+                                                <b class="form-control-static">&emsp;点&emsp;</b>
+                                        <span class="col-xs-1 input-group input-group-sm">
+                                            <input type="text" class="form-control">
+                                            <small class="fa fa-caret-down form-control-feedback iconT"></small>
+                                        </span>
+                                                <b class="form-control-static">&emsp;分&emsp;</b>
+                                            </div>
+
+                                        </div>
+
+                                        <div style="margin-bottom: 10px;">
+                                            特殊情况说明：
+                                            <input style="width: 450px;" id="note" type="text">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" tabindex="5">
+                                    <strong class="text-stress">*</strong> 是否预约
+                                </td>
+                                <td>
+                                    <div class="radio radio-inline">
+                                        <input name="reservation" id="reservation0" type="radio">
+                                        <label for="reservation0">
+                                            无需预约，消费高峰时可能需要等位
+                                        </label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input name="reservation" id="reservation1" type="radio">
+                                        <label for="reservation1">提前</label>
+                                        <input class="input-time" id="reservation1_info" type="text">&nbsp;天
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input name="reservation" id="reservation2" type="radio">
+                                        <label for="reservation2">提前</label>
+                                        <input class="input-time" id="reservation2_info" type="text">&nbsp;小时
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" tabindex="6">
+                                    <strong class="text-stress">*</strong> 推荐用餐类型
+                                    <br>
+                                    (多选)
+                                </td>
+                                <td id="recommend_use_date">
+                                    <div class="checkbox checkbox-inline">
+                                        <input class="styled" id="recommend_use_date0" type="checkbox" value="0">
+                                        <label for="recommend_use_date0">早餐</label>
+                                    </div>
+                                    <div class="checkbox checkbox-inline">
+                                        <input class="styled" id="recommend_use_date1" type="checkbox" value="1">
+                                        <label for="recommend_use_date1">午餐</label>
+                                    </div>
+                                    <div class="checkbox checkbox-inline">
+                                        <input class="styled" id="recommend_use_date2" type="checkbox" value="2">
+                                        <label for="recommend_use_date2">晚餐</label>
+                                    </div>
+                                    <div class="checkbox checkbox-inline">
+                                        <input class="styled" id="recommend_use_date3" type="checkbox" value="3">
+                                        <label for="recommend_use_date3">下午茶</label>
+                                    </div>
+                                    <div class="checkbox checkbox-inline">
+                                        <input class="styled" id="recommend_use_date4" type="checkbox" value="4">
+                                        <label for="recommend_use_date4">夜宵</label>
+                                    </div>
+                                    <br><br>
+                                    <small>
+                                        提示：该字段用来推荐消费者用餐类型，方便消费者快速筛选。不用来限制消费者使用时间。
+                                    </small>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2" style="border-top-color: white;
+                                    border-left-color: white;border-right-color: white;">
+                                    <label class="control-label label-subtitle">团购约定</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" tabindex="7">
+                                    <strong class="text-stress">*</strong> 是否限购团购券
+                                </td>
+                                <td>
+                                    <div class="radio radio-inline">
+                                        <input name="buy_limit_number" id="buy_limit_number0" type="radio">
+                                        <label for="buy_limit_number0">不限</label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input name="buy_limit_number" id="buy_limit_number1" type="radio">
+                                        <label for="buy_limit_number1">是，每人限购</label>
+                                        <input id="buy_limit_number1_info" class="input-time" type="text">&nbsp;张
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" tabindex="8">
+                                    <strong class="text-stress">*</strong> 是否限用团购券
+                                </td>
+                                <td>
+                                    <div class="radio radio-inline">
+                                        <input id="use_limit0" name="use_limit" type="radio">
+                                        <label for="use_limit0">不限</label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input name="use_limit" id="use_limit1" type="radio">
+                                        <label for="use_limit1">是，每人限用</label>
+                                        <input class="input-time" id="use_limit1_info" type="text">&nbsp;张
+                                    </div>
+                                    <div class="radio radio-inline radio-input">
+                                        <input name="use_limit" id="use_limit2" type="radio">
+                                        <label for="use_limit2">是，每桌限用</label>
+                                        <input class="input-time" id="use_limit2_info" type="text">&nbsp;张
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" tabindex="9">
+                                    <strong class="text-stress">*</strong> 是否限制使用人数
+                                </td>
+                                <td class="td_indent">
+                                    <div class="radio">
+                                        <input id="use_limit_people_number0" name="use_limit_people_number" type="radio">
+                                        <label for="use_limit_people_number0">不限</label>
+                                    </div>
+                                    <div class="radio radio radio-input">
+                                        <input id="use_limit_people_number1" name="use_limit_people_number" type="radio">
+                                        <label>是，每张限</label>
+                                        <input class="input-time" id="use_limit_people_number1_info0" type="text">&nbsp;人使用，身高
+                                        <input class="input-time" id="use_limit_people_number1_info1" type="text">&nbsp;米以上儿童计入人数
+                                    </div>
+                                    <div class="radio radio-input">
+                                        <input name="use_limit_people_number" id="use_limit_people_number2" type="radio">
+                                        <label for="use_limit_people_number2">是，张限</label>
+                                        <input class="input-time" id="use_limit_people_number2_info" type="text">&nbsp;人使用，不论是否儿童均计入人数
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="border-top-color: white;
+                                    border-left-color: white;border-right-color: white;">
+                                    <label class="control-label label-subtitle">品类特有约定</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" tabindex="10">
+                                    <strong class="text-stress">*</strong> 是否可以免费打包
+                                </td>
+                                <td class="td_indent">
+                                    <div class="radio">
+                                        <input name="packing_info" id="packing_info0" type="radio">
+                                        <label for="packing_info0">是，免费打包</label>
+                                    </div>
+                                    <div class="radio radio-input">
+                                        <input name="packing_info" id="packing_info1" type="radio">
+                                        <label for="packing_info1">否，需支付打包费</label>
+                                        <input id="packing_info1_info" class="input-time" type="text">&nbsp;元/盒
+                                    </div>
+                                    <div class="radio radio-input">
+                                        <input name="packing_info" id="packing_info2" type="radio">
+                                        <label for="packing_info2">否，需支付打包费</label>
+                                        <input class="input-time" id="packing_info2_info" type="text">&nbsp;元/袋
+                                    </div>
+                                    <div class="radio radio-input">
+                                        <input name="packing_info" id="packing_info3" type="radio">
+                                        <label for="packing_info3">打包带免费，打包盒收费标准为</label>
+                                        <input class="input-time" id="packing_info3_info" type="text">&nbsp;元/盒
+                                    </div>
+                                    <div class="radio">
+                                        <input name="packing_info" id="packing_info4" type="radio">
+                                        <label for="packing_info4">
+                                            可以打包，打包费详情咨询商家
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" tabindex="11">
+                                    <strong class="text-stress">*</strong> 堂食外带约定
+                                </td>
+                                <td>
+                                    <div class="radio radio-inline">
+                                        <input id="packing_limit0" name="packing_limit" type="radio">
+                                        <label for="packing_limit0">
+                                            堂食外带均可
+                                        </label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input id="packing_limit1" name="packing_limit" type="radio">
+                                        <label for="packing_limit1">
+                                            仅限堂食，不提供外带
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center" tabindex="12">
+                                    <strong class="text-stress">*</strong> 餐巾纸
+                                </td>
+                                <td>
+                                    <div class="radio radio-inline">
+                                        <input id="serviette_info0" name="serviette_info" type="radio">
+                                        <label for="serviette_info0">
+                                            免费
+                                        </label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input id="serviette_info1" name="serviette_info" type="radio">
+                                        <label for="serviette_info1">
+                                            不提供
+                                        </label>
+                                    </div>
+                                    <div class="radio radio-inline radio-input">
+                                        <input id="serviette_info2" name="serviette_info" type="radio">
+                                        <label for="serviette_info2"></label>
+                                        <input class="input-time" id="serviette_info2_info" type="text">&nbsp;元/份
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="border-color: white;">
+                                    <label class="control-label label-subtitle">其他补充条款</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="border-color: white">
+                                    <textarea style="display: block;width: 100%;" rows="5" id="other_info_info"></textarea>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group" id="settleTime">
+                    <label for="PNameInput" class="control-label label-subtitle">手动结算周期:</label>
+                    <div class="col-xs-1">
+                        <input id="takeTime" type="text" class="form-control circle" placeholder="7"/>
+                    </div>
+                    <small class="circleDay">天</small>
+                    <label for="peopleInput" class="control-label label-subtitle">自动结算周期:</label>
+                    <div class="col-xs-1">
+                        <input id="LossCutTime" type="text" class="form-control circle" placeholder="14"/>
+                    </div>
+                    <small class="circleDay">天</small>
+                </div>
+            </div>
+            <br/>
+            <div class="row bottomBtn" style="margin-left: 0">
+                <button class="btn btn-lg mybtn" type="button" id="returnL">返&nbsp;回</button>
+            </div>
+            <br/><br/><br/>
+        </div>
+
+        <!--脉点详情-->
+        <div id="JMPoint" class="row center-block" style="display:none;">
+            <br/> <br/>
+            <div class="row">
+                <textarea name="editor2" id="editor2" rows="10" cols="80"></textarea>
+                <script type="text/javascript">
+                    CKEDITOR.replace('editor2',{height: '300px',width:'97%',toolbar:"Full",dialog_backgroundCoverColor:'white'});
+                </script>
+            </div>
+            <br/><br/><br/>
+            <div class="row bottomBtn" style="margin-left: 0">
+                <button class="btn btn-lg mybtn" id="saveBtn" type="button">保&nbsp;存</button>
+                <button class="btn btn-lg mybtn" type="button" id="viewBtn">预&nbsp;览</button>
+                <button class="btn btn-lg mybtn" type="button" id="uploadBtn"
+                        style="background:#fad502;color: #000000">上&nbsp;线</button>
+            </div>
+            <br/><br/><br/>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../../js/plugins/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../../js/plugins/moment.js"></script>
+<script type="text/javascript" src="../../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../../js/plugins/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="../../js/plugins/jquery.validate.js"></script>
+<script type="text/javascript" src="../../js/common/interface.js"></script>
+<script type="text/javascript" src="../../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../../js/common/verify.js"></script>
+<script type="text/javascript" src="../../js/common/infoFilling.js"></script>
+<script type="text/javascript" src="../../js/my/projectVerifyDetail.js"></script>
+</body>
+</html>
+

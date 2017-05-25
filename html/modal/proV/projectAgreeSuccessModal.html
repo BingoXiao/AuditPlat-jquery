@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <style>
+        body {
+            font-size: 14px;
+        }
+
+        h4 {
+            margin-left: 15px;
+        }
+
+        .modal-body button {
+            padding: 6px 20px;
+            margin-right: 18px;
+            font-size: 15px;
+            letter-spacing: 4px;
+        }
+    </style>
+</head>
+
+<body>
+<!--同意成功-->
+<div class="modal-body" style="padding: 90px 5px 110px 5px;">
+    <div class="row text-center">
+        <span class="fa fa-check-circle fa-3x">&nbsp;</span>
+        <span id="proEdit" style="font-size:25px;vertical-align:text-bottom">已同意该项目审核</span>
+        <script>
+            if (sessionStorage.getItem('topListp') == "onlineApply") {
+                $("#proEdit").html("已同意该项目审核");
+            } else if (sessionStorage.getItem('topListp') == "modifyApply") {
+                $("#proEdit").html("已同意项目修改");
+            } else if (sessionStorage.getItem('topListp') == "offlineApply") {
+                $("#proEdit").html("已同意项目下线申请");
+            }
+        </script>
+    </div>
+    <div class="row text-center">
+        <p style="font-size: 18px;margin-top: 20px">自动返回系统中......</p>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/modal/proV.js"></script>
+</body>
+
+</html>
+

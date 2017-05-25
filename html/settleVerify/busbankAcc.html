@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-size: 15px;
+        }
+
+        h4 {
+            margin-left: 15px;
+        }
+
+        .form-group {
+            margin: 25px 0;
+            padding-left: 0;
+        }
+
+        .form-horizontal .control-label {
+            text-align: left;
+        }
+
+        label.col-xs-2 {
+            width: 13%;
+        }
+
+        .infoFill {
+            padding-left: 0;
+        }
+
+        a#returnTobank, a#returnTobank:focus, a#returnTobank:hover, a#returnTobank:active {
+            color: #000000;
+        }
+
+        .bottom_Btn {
+            padding-bottom: 50px;
+        }
+
+        .bottom_Btn button {
+            padding: 8px 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!--内容-->
+<div class="container">
+
+    <br/><br/>
+    <div class="row">
+        <div class="col-xs-12" style="padding-left:0;">
+            <hr class="navline"/>
+            <ul class="nav nav-pills List" id="busRegisterList">
+                <li id="busbankView" class="active"><a href="javascript:;">查看</a></li>
+            </ul>
+
+            <div class="row" style="position:absolute;right:36px;top:-5px;">
+                <a href='../settleVerify.html' target='iframe_account' id="returnTobank">
+                    <span class="fa fa-chevron-circle-left" style="color:#000000"></span>
+                    <small>&nbsp;回到商家银行账户修改</small>
+                </a>
+            </div>
+        </div>
+
+        <br/> <br/> <br/>
+        <div class="col-xs-offset-2 col-xs-10">
+            <div id="setVBusBankFrom" class="form-horizontal" style="margin-bottom:30px;">
+                <div id="basicInfo" class="row">
+                    <div class="form-group">
+                        <label for="bus_account" class="col-xs-2 control-label">商家账号:</label>
+                        <div class="col-xs-5 infoFill">
+                            <span id="bus_account" class="form-control"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="telNum">
+                        <label id="proName" class="col-xs-2 control-label">项目名称:</label>
+                        <div class="col-xs-5 infoFill" id="projectName">
+                            <span id="item_names1" class="form-control"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="FinContact">
+                        <label for="contactMan" class="col-xs-2 control-label">财务联系人:</label>
+                        <div class="col-xs-2 infoFill">
+                            <span class="form-control" id="contactMan"></span>
+                        </div>
+                        <div class="col-xs-3">
+                            <span class="form-control" id="contactPhone"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="financeType" class="col-xs-2 control-label">财务类型:</label>
+                        <div class="col-xs-4 infoFill">
+                            <span id="financeType" class="form-control"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="financeName" class="col-xs-2 control-label">开户名称:</label>
+                        <div class="col-xs-4 infoFill">
+                            <span id="financeName" class="form-control"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bankAccount" class="col-xs-2 control-label">银行账号:</label>
+                        <div class="col-xs-4 infoFill">
+                            <span id="bankAccount" class="form-control"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bankCity" class="col-xs-2 control-label">开户银行城市:</label>
+                        <div class="col-xs-3 infoFill">
+                            <span id="bankCity" class="form-control"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="accountBank" class="col-xs-2 control-label">开户银行:</label>
+                        <div class="col-xs-3 infoFill">
+                            <span id="accountBank" class="form-control"></span>
+                        </div>
+
+                        <label for="bankName" class="col-xs-2 control-label"
+                               style="padding-right: 0">开户行名称:</label>
+                        <div class="col-xs-3 infoFill">
+                            <span id="bankName" class="form-control"></span>
+                        </div>
+                    </div>
+
+                    <div id="IDInformation" style="display:none">
+                        <h4 style="margin-left: 0">身份信息</h4>
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">* 上传清晰证件照片</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="idType" class="col-xs-2 control-label">* 证件类型</label>
+                            <div class="col-xs-4 infoFill">
+                                <select id="idType" class="form-control">
+                                    <option value="ID_CARD">身份证</option>
+                                    <option value="HK_MACAO_CARD">港澳通行证</option>
+                                    <option value="TAIWAN_CARD">台胞证</option>
+                                    <option value="PASSPORT">护照</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="idName" class="col-xs-2 control-label">* 真实姓名</label>
+                            <div class="col-xs-4 infoFill">
+                                <span id="idName" class="form-control"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="idNumber" class="col-xs-2 control-label">* 证件号码</label>
+                            <div class="col-xs-4 infoFill">
+                                <span id="idNumber" class="form-control"></span>
+                            </div>
+                        </div>
+
+                        <div id="IDFirst" class="form-group">
+                            <img src="" id="IDFront" class="img-upload"/>
+                            <img src="" id="IDBack" class="img-upload"/>
+                        </div>
+
+                        <!--护照-->
+                        <div id="IDSecond" class="form-group" style="display:none;">
+                            <img src="" id="IDAll"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="bankEdit" class="bottom_Btn">
+                <button id="basicInfo_pass" type="button" class="btn mybtn" style="margin-right:40px">通过
+                </button>
+                <button id="basicInfo_reject" type="button" class="btn mybtn" style="background:#d42223;">驳回
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../../js/plugins/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../../js/common/interface.js"></script>
+<script type="text/javascript" src="../../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../../js/common/infoFilling.js"></script>
+<script type="text/javascript" src="../../js/my/setVbankAcc.js"></script>
+</body>
+</html>
+

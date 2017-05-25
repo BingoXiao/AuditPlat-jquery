@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/font-awesome.css" rel="stylesheet">
+    <link href="../css/checkbox.css" rel="stylesheet">
+    <link href="../css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .viewBuses{
+            cursor: pointer;
+        }
+        .wholeShopsTable {
+            cursor: pointer;
+        }
+
+        .addShops, .minusShops {
+            cursor: pointer;
+        }
+
+        .minusShops {
+            color: #d92402;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container htmlWrap">
+    <div class="row" style="margin-top:40px">
+        <div class="col-md-12" style="padding-left: 0">
+            <hr class="navline"/>
+            <ul class="nav nav-pills List" id="eventsList">
+                <li id="MyCoupons" class="active"><a href="#">我的优惠券</a></li>
+                <li id="Newcoupons" style="margin-left: 15px"><a href="#">新增优惠券</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!--**********************    我的优惠券   ************************-->
+    <div id="myCouponsDiv">
+        <div class="row searchForm lookS">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label class="control-label">日期：</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control datepicker dateFrom">
+                        <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                    </div>
+
+                    <label class="control-label">&emsp;至&emsp;</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control datepicker dateTo">
+                        <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">优惠券名称：</label>
+                    <div class="input-group">
+                        <input type="text" id="couponsSerach" class="form-control"
+                               placeholder="门店名称"/>
+                        <div class="input-group-addon"><span class="fa fa-search"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--用户信息表格详细-->
+        <div class="row">
+            <table id="couponsTable" class="table table-bordered text-center">
+                <thead>
+                <tr>
+                    <th>创建时间</th>
+                    <th>类型</th>
+                    <th>名称</th>
+                    <th>优惠</th>
+                    <th>门店</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!--页码区域-->
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <ul class="pagination pageIndex">
+                    <li id="first"><a>&laquo;</a></li>
+                    <li id="previous"><a>&lsaquo;</a></li>
+                    <li class="active"><a id="pageIndex">1</a></li>
+                    <li id="next"><a>&rsaquo;</a></li>
+                    <li id="last"><a>&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!--**********************    新增优惠券   ************************-->
+    <div class="row" id="addCouponsDiv" style="display: none;">
+        <div id="couponsFrom" class="col-xs-12 form-horizontal" autocomplete="false"
+             style="margin-top:40px;margin-bottom:0">
+            <div class="form-group">
+                <label class="control-label label-subtitle">
+                    类型:
+                </label>
+                <div class="col-xs-8">
+                    <div class="col-xs-2 radio radio-inline">
+                        <input type="radio" name="CP" id="commonCoupon" value="DISCOUNT" checked="checkeed">
+                        <label for="commonCoupon" style="line-height:15px;font-size:14px">优惠券</label>
+                    </div>
+                    <div class="col-xs-2 radio radio-inline" style="padding-right: 0">
+                        <input type="radio" name="CP" id="dateCoupon" value="DATING">
+                        <label for="dateCoupon" style="line-height:15px;font-size:14px">约会券</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="couponName" class="control-label label-subtitle">名称:</label>
+                <div class="col-xs-2">
+                    <input id="couponName" type="text" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="total" class="control-label label-subtitle">优惠:&emsp;满</label>
+                <div class="col-xs-1" style="padding-right: 0">
+                    <input id="total" type="text" class="form-control"
+                           onkeydown="input_limits.only_num(event);"
+                           onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')"/>
+                </div>
+                <label for="gap" class="control-label label-subtitle"
+                       style="margin-left:18px">减</label>
+                <div class="col-xs-1">
+                    <input id="gap" type="text" class="form-control"
+                           onkeydown="input_limits.only_num(event);"
+                           onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-inline">
+                    <label class="control-label label-subtitle">
+                        发放时间:
+                    </label>
+                    <div class="col-xs-2 radio radio-inline" style="width:10%">
+                        <input type="radio" name="provideTime" id="provide24hours" value="1" checked>
+                        <label for="provide24hours" style="line-height:15px;font-size:14px">24小时</label>
+                    </div>
+                    <div class="col-xs-6 radio radio-inline" style="padding-top:5px">
+                        <input type="radio" name="provideTime" id="providehoursPeriod" value="0">
+                        <label></label>
+                        <div class="input-group">
+                            <input type="text" id="provideFrom" class="form-control timeFrom">
+                            <span class="glyphicon glyphicon-time form-control-feedback"></span>
+                        </div>
+                        <label class="control-label" style="padding-top: 0">&nbsp;至&nbsp;</label>
+                        <div class="input-group">
+                            <input type="text" id="provideTo" class="form-control timeTo">
+                            <span class="glyphicon glyphicon-time form-control-feedback"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-inline">
+                    <label class="control-label label-subtitle">
+                        有效时间:
+                    </label>
+                    <div class="col-xs-2 radio radio-inline" style="width:10%">
+                        <input type="radio" name="validTime" id="valid24hours" value="1" checked>
+                        <label for="valid24hours" style="line-height:15px;font-size:14px">当日</label>
+                    </div>
+                    <div class="col-xs-6 radio radio-inline" style="padding-top:5px">
+                        <input type="radio" name="validTime" id="valideHoursPeriod" value="0">
+                        <label></label>
+                        <div class="input-group">
+                            <input type="text" id="validFrom" class="form-control datepicker dateFrom">
+                            <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                        </div>
+                        <label class="control-label" style="padding-top: 0">&nbsp;至&nbsp;</label>
+                        <div class="input-group">
+                            <input type="text" id="validTo" class="form-control datepicker dateTo">
+                            <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label label-subtitle">
+                    门店:
+                </label>
+                <div class="col-xs-6">
+                    <div class="col-xs-3 radio radio-inline">
+                        <input type="radio" name="chooseShops" id="wholeShops" value="1" checked>
+                        <label for="wholeShops" style="line-height:15px;font-size:14px">全部门店</label>
+                    </div>
+
+                    <div class="col-xs-6 radio radio-inline">
+                        <input type="radio" name="chooseShops" id="chooseShop" value="0">
+                        <label for="chooseShop" style="line-height:15px;font-size:14px">选择门店&nbsp;</label>
+                        <button id="chooseShopBtn" class="btn mybtn fa fa-search" type="button"
+                                style="padding:2px 5px"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!--选择门店-->
+            <div id="chooseShopsDiv" class="row" style="margin-top:50px;display: none;">
+                <div class="col-xs-12" style="padding-left:0">
+                    <hr class="navline"/>
+                    <ul class="nav nav-pills List" id="addCouponsTable">
+                        <li id="selectedShops" class="active" style="position: relative">
+                            <a href="javascript:;">已选门店
+                            <span id="badge" class="badge" style="position: absolute;top:-6px;right:-6px;
+                            background-color: #d82302;color: #ffffff;padding:3px 6px;">0</span>
+                            </a>
+                        </li>
+                        <li id="shopsSearch" style="margin-left: 15px"><a href="javascript:;">门店搜索</a></li>
+                    </ul>
+                </div>
+
+                <div class="row" id="selectedShopsDiv">
+                    <div class="col-xs-8">
+                        <table id="selectedShopsTable" class="table table-bordered text-center"
+                               style="margin-top: 20px">
+                            <thead>
+                            <tr>
+                                <th>选择</th>
+                                <th>门店名称</th>
+                                <th>门店账号</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--页码区域-->
+                    <div class="col-xs-8 text-center">
+                        <ul class="pagination pageIndex">
+                            <li id="first1"><a>&laquo;</a></li>
+                            <li id="previous1"><a>&lsaquo;</a></li>
+                            <li class="active"><a id="pageIndex1">1</a></li>
+                            <li id="next1"><a>&rsaquo;</a></li>
+                            <li id="last1"><a>&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row" id="searchShopsDiv" style="display: none;">
+                    <div class="col-xs-12">
+                        <br/>
+                        <div class="form-inline">
+                            <div class="input-group">
+                                <input type="text" class="form-control verifyNumInput"
+                                       placeholder="门店名称"/>
+                                <div class="input-group-addon"><span class="fa fa-search"></span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-8">
+                        <table id="searchShopsTable" class="table table-bordered text-center"
+                               style="margin-top:20px">
+                            <thead>
+                            <tr>
+                                <th>选择</th>
+                                <th>门店名称</th>
+                                <th>门店账号</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--页码区域-->
+                    <div class="col-xs-8 text-center">
+                        <ul class="pagination pageIndex">
+                            <li id="first2"><a>&laquo;</a></li>
+                            <li id="previous2"><a>&lsaquo;</a></li>
+                            <li class="active"><a id="pageIndex2">1</a></li>
+                            <li id="next2"><a>&rsaquo;</a></li>
+                            <li id="last2"><a>&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12" style="padding-left:0">
+            <hr/>
+            <button id="addBtn" class="btn btn-lg mybtn" type="button">&emsp;新 增&emsp;</button>
+            <button id="editBtn" class="btn btn-lg mybtn" type="button"
+                    style="display: none;">&emsp;修 改&emsp;</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/plugins/moment.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="../js/common/interface.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/my/EMcouponsManage.js"></script>
+</body>
+</html>

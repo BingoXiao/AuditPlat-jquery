@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <style>
+        body{
+            font-size:14px;
+        }
+        h4{
+            margin-left: 15px;
+        }
+        .modal-body button{
+            padding:6px 20px;
+            margin-right:18px;
+            font-size:15px;
+            letter-spacing:4px;
+        }
+        .text-left{
+            font-size: 16px;
+        }
+        textarea{
+            line-height:22px;
+            padding:10px 12px;
+            font-size:13px;
+            border: 1px solid #dddddd;
+        }
+        .bottomBtn .btn{
+            padding:10px 33px;
+            margin:0 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!--驳回-->
+    <div class="modal-header" style="border-bottom: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class=" text-center">驳回</h3>
+    </div>
+    <div class="modal-body" style="padding-top:0;font-size:15px;margin-left:3%">
+        <div class="container-fluid">
+            <div class="row text-left">
+                <p style="text-align: justify"><b>请选择驳回理由：</b></p>
+                <form id="rejectInfo" class="form-horizontal" role="form" style="font-size: 13px;">
+                    <div class="col-md-4  col-xs-12 checkbox checkbox-inline">
+                        <input type="checkbox" name="reasons" id="options1" value="图文不符">
+                        <label for="options1">图文不符</label>
+                    </div>
+                    <div class="col-md-4  col-xs-12 checkbox checkbox-inline">
+                        <input type="checkbox" name="reasons" id="options2" value="分类错误">
+                        <label for="options2">分类错误</label>
+                    </div>
+                    <div class="col-md-3  col-xs-12 checkbox checkbox-inline">
+                        <input type="checkbox" name="reasons" id="options3" value="错别字">
+                        <label for="options3">错别字</label>
+                    </div>
+                    <div class="col-md-12 col-xs-12 checkbox checkbox-inline" style="margin-left: 0">
+                        <input type="checkbox" name="reasons" id="options4" value="其他">
+                        <label for="options4">其他</label>
+                    </div>
+                    <div class="col-xs-12" style="padding-top:30px;padding-left: 2px;">
+                        <textarea id="otherReasons" cols="57" rows="3" style="font-size:12px;padding:6px 8px;overflow:hidden" maxlength="100"></textarea>
+                    </div>
+                    <div class="col-xs-12 text-center" style="margin-top:50px;margin-bottom:40px;">
+                        <button type="button" class="btn mybtn" id="confirmReject" style="">确&nbsp;认</button>
+                        <button type="button" class="btn mybtn" data-dismiss="modal" aria-hidden="true" style="background-color:#cb0000;color: #ffffff;">取&nbsp;消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.validate.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/modal/proV.js"></script>
+</body>
+</html>
+

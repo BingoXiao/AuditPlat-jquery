@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/font-awesome.css" rel="stylesheet">
+    <link href="../css/checkbox.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .modal button {
+            padding: 7px 20px;
+        }
+
+        .Listdiv {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="container-fluid" id="body" style="height:100%;padding:0;min-width:1200px;">
+    <div class="row" data-background-color="dark" style="margin:0;height:60px;">
+        <table class="table header" style="margin-top:0;margin-bottom:0;width:100%;">
+            <tr>
+                <td>
+                    <div class="div-img">
+                        <img id="jmicon" src="../img/logo.png" class="img-header-logo" alt="近脉商家中心"
+                             style="cursor: pointer;"/>
+                    </div>
+                    <button class="btn mybtn" id="returnRegisterList" style="display: none">返回商家列表</button>
+                </td>
+                <td style="color: #ffffff">
+                    <div class="div-vm-fr" style="vertical-align: middle;">
+                        <span class="personalAccount" style="position:relative;">
+                            <a class="load_point" id="load_point">
+                                <span id="usernameTop"></span>&nbsp;&nbsp;
+                                <small class="glyphicon glyphicon-chevron-down"></small>
+                            </a>
+                            <!--顶部菜单右边（修改密码和登出）-->
+                            <div class="topright" id="TopRList" hidden>
+                                <ul id="toplist" class="bubble">
+                                    <li style="border-bottom: 1px solid #000000;">
+                                        <span id="editPWTOP">修改密码</span>
+                                    </li>
+                                    <li id="logOut" style="padding-bottom: 0">
+                                        <span>登出</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </span>
+                        <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                        <span class="glyphicon glyphicon-qrcode"></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!--左边菜单栏-->
+    <div class="row" style="width:100%;position:absolute;top:60px;bottom:0;margin:0;">
+        <div id="left-navlist" class="left-navlist">
+            <ul class="nav nav-pills nav-stacked navbar-inverse text-center" role="tablist">
+                <li id="BDTitle" class="collapseParents" style="display: none">
+                    <span class="fa fa-caret-right fa-lg topIcon"></span>
+                    <a href="">BD</a>
+                </li>
+                <div id="collapseZero_BD" class="Listdiv">
+                    <div class="panel-body">
+                        <ul id="BDleftList" class="nav nav-pills nav-stacked navbar-inverse text-center">
+                            <li id="BDapply" class="left-navlist-title" style="display: none">
+                                <img src="../img/icon/002.png" class="left-navlist-icon"/>
+                                <a id="BDapply_a" href='#BDapply'>商家分配</a>
+                            </li>
+                            <li id="BDregister" class="left-navlist-title" style="display: none">
+                                <img src="../img/icon/003.png" class="left-navlist-icon"/>
+                                <a id="BDregister_a" href='#BDregister'>商家注册</a>
+                            </li>
+                            <li id="busList" class="left-navlist-title" style="display: none">
+                                <img src="../img/icon/004.png" class="left-navlist-icon"/>
+                                <a id="busList_a" href='#busList'>商家列表</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <li id="verifyTitle" class="collapseParents" style="display: none">
+                    <span class="fa fa-caret-right fa-lg topIcon"></span>
+                    <a href="">审核</a>
+                </li>
+                <div id="collapseOne_check" class="Listdiv">
+                    <div class="panel-body">
+                        <ul id="verifyList" class="nav nav-pills nav-stacked navbar-inverse text-center">
+                            <li id="busVerify" class="left-navlist-title" style="display: none">
+                                <img src="../img/icon/006.png" class="left-navlist-icon"/>
+                                <a id="busVerify_a" href='#busVerify'>商家审核</a>
+                            </li>
+                            <li id="projectVerify" class="left-navlist-title" style="display: none">
+                                <img src="../img/icon/007.png" class="left-navlist-icon"/>
+                                <a id="projectVerify_a" href='#projectVerify'>项目审核</a>
+                            </li>
+                            <li id="settleVerify" class="left-navlist-title" style="display: none">
+                                <img src="../img/icon/008.png" class="left-navlist-icon"/>
+                                <a id="settleVerify_a" href='#settleVerify'>结款审核</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <li id="proManagement" class="collapseParents" style="display:none;">
+                    <span class="fa fa-caret-right fa-lg topIcon"></span>
+                    <a href="">项目管理</a>
+                </li>
+                <div id="proManagementList" class="Listdiv">
+                    <div class="panel-body">
+                        <ul class="nav nav-pills nav-stacked navbar-inverse text-center">
+                            <li id="projectList" class="left-navlist-title" style="display:none;">
+                                <img src="../img/icon/014.png" class="left-navlist-icon"/>
+                                <a id="projectList_a" href='#projectList'>项目列表</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <li id="EventManagement" class="collapseParents" style="display:none">
+                    <span class="fa fa-caret-right fa-lg topIcon"></span>
+                    <a href="">活动管理</a>
+                </li>
+                <div id="EventManagementList" class="Listdiv">
+                    <div class="panel-body" style="display: none">
+                        <ul id="eventManageList" class="nav nav-pills nav-stacked navbar-inverse text-center">
+                            <li id="EMcouponManage" class="left-navlist-title">
+                                <img src="../img/icon/17.png" class="left-navlist-icon"/>
+                                <a id="EMcouponManage_a" href='#EMcouponManage'>优惠券管理</a>
+                            </li>
+                            <li id="EMaddEvents" class="left-navlist-title">
+                                <img src="../img/icon/18.png" class="left-navlist-icon"/>
+                                <a id="EMaddEvents_a" href='#EMaddEvents'>新增活动</a>
+                            </li>
+                            <li id="EMeventsList" class="left-navlist-title">
+                                <img src="../img/icon/16.png" class="left-navlist-icon"/>
+                                <a id="EMeventsList_a" href='#EMeventsList'>活动列表</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <li id="BusManagement" class="collapseParents" style="display: none">
+                    <span class="fa fa-caret-right fa-lg topIcon"></span>
+                    <a href="">商家管理</a>
+                </li>
+                <div id="BusManagementList" class="Listdiv">
+                    <div class="panel-body" style="display: none">
+                        <ul class="nav nav-pills nav-stacked navbar-inverse text-center">
+                            <li id="systemInform" class="left-navlist-title">
+                                <img src="../img/icon/010.png" class="left-navlist-icon"/>
+                                <a id="systemInform_a" href='#systemInform'>系统公告</a>
+                            </li>
+                            <li id="complaints" class="left-navlist-title">
+                                <img src="../img/icon/015.png" class="left-navlist-icon" style="width:17px;"/>
+                                <a id="complaints_a" href='#complaints'>举报</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <li id="systemSetting" class="collapseParents" style="display: none">
+                    <span class="fa fa-caret-right fa-lg topIcon"></span>
+                    <a href="">系统设置</a>
+                </li>
+                <div id="systemSettingList" class="Listdiv">
+                    <div class="panel-body" style="display: none">
+                        <ul class="nav nav-pills nav-stacked navbar-inverse text-center">
+                            <li id="accountManagement" class="left-navlist-title">
+                                <img src="../img/icon/012.png" class="left-navlist-icon"/>
+                                <a id="accountManagement_a" href="#accountManagement">账户管理</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </ul>
+        </div>
+        <div class="iframeContent">
+            <iframe id="rightIframe" src="" name="iframe_account"
+                    width="100%" height="99%" frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
+
+
+<!--所有模态框-->
+<!--模态框-->
+<div id="my_modal" class="modal fade" role="dialog" data-dismiss="modal" data-backdrop="static"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:490px;min-width:490px;">
+        <div class="modal-content" id="modalcontent">
+
+        </div>
+    </div>
+</div>
+
+
+<!--脉点预览模态框-->
+<div id="JMDot_modal" class="modal fade" role="dialog" data-dismiss="modal"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:375px;word-wrap:break-word;">
+        <div class="modal-content" id="JMDotContent"
+             style="height:667px;background-color:white;overflow: auto">
+
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.validate.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/common/interface.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/my/accountData.js"></script>
+<script type="text/javascript" src="../js/my/checkIndex.js"></script>
+
+</body>
+</html>
+

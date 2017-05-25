@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/font-awesome.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        select{
+            margin-right:15px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container htmlWrap">
+    <div class="row searchForm">
+        <form class="form-inline">
+            <div class="form-group usename">
+                <label for="NumInput" class="control-label">商家账号：</label>
+                <div class="input-group">
+                    <input id="NumInput" type="text" class="form-control" placeholder="商家账号"/>
+                    <div class="input-group-addon"><span class="fa fa-search"></span></div>
+                </div>
+            </div>
+
+            <div id="stateList" class="form-group stateFilter">
+                <label for="dropdownMenuState" class="control-label">状态：</label>
+                <select id="dropdownMenuState" class="dropdownMenuState text-center" style="width:55%;">
+                    <option value="全部">全部</option>
+                    <option value="营业中">营业中</option>
+                    <option value="已关闭">已关闭</option>
+                    <option value="筹备中">筹备中</option>
+                    <option value="暂停营业">暂停营业</option>
+                </select>
+            </div>
+
+            <div class="form-group sClass">
+                <label class="control-label">商家分类：</label>
+                <select id="repast" class="text-center">
+                    <option value="">合作行业</option>
+                </select>
+                <select id="category" class="text-center">
+                    <option value="">品类</option>
+                </select>
+                <select id="small_category" class=" text-center">
+                    <option value="">子类别</option>
+                </select>
+            </div>
+
+            <div class="pull-right">
+                <button id="downloadList" type="button" class="btn mybtn">下载列表</button>
+            </div>
+        </form>
+    </div>
+
+
+    <!--用户信息表格详细-->
+    <div class="row">
+        <table id="busListTable" class="table table-bordered text-center">
+            <thead>
+            <tr>
+                <th>商家编号</th>
+                <th>商家账号</th>
+                <th>城市</th>
+                <th>商圈</th>
+                <th>商家分类</th>
+                <th>状态</th>
+                <th>开通时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/common/interface.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/my/busList.js"></script>
+</body>
+</html>
+

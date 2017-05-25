@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div>
+    <img class="img" src="" alt="图片"/>
+</div>
+
+<script type="text/javascript" src="../../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../../js/common/dataProcessing.js"></script>
+<script>
+    //获取url的参数(注册号)
+    var loc = decodeURIComponent(window.location.hash);
+    var para =common.getUrlParameters(loc,'img');
+
+    $(".img").attr("src",para);
+
+</script>
+</body>
+</html>
+

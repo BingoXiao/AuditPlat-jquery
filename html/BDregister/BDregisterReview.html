@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css" rel="stylesheet">
+    <link href="../../css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../../css/checkbox.css" rel="stylesheet">
+
+    <link href="../../css/style.css" rel="stylesheet">
+
+    <!--百度地图API -->
+    <script type="text/javascript"
+            src="https://api.map.baidu.com/api?v=2.0&ak=vyP2EY9up3oDOPAVdWMnH4elquPxa1vm&s=1"></script>
+
+    <style>
+        body {
+            font-size: 16px;
+        }
+
+        h4 {
+            margin-left: 15px;
+        }
+
+        .form-group {
+            margin: 25px 0;
+            padding-left: 0;
+        }
+
+        .photo_tips {
+            display: inline-block;
+            color: #7E7E7E;
+            padding-left: 30px;
+            font-size: 13px;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .tmp_img {
+            width: 220px;
+            height: 140px;
+            vertical-align: baseline;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .dp {
+            width: 100%;
+            border: 1px solid #b5b5b5;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            background: #ffffff;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 15px;
+            text-align: left;
+        }
+
+        .dp span:first-child {
+            color: #99999b;
+        }
+
+        .dropdown-menu li a {
+            padding-left: 15px;
+        }
+
+        .div-upload-exc {
+            height: 280px;
+            line-height: 280px;
+        }
+
+        .upload_pic_div {
+            margin-left: 20px;
+            position: relative;
+            height: 140px;
+        }
+
+        .upload_pic_div_exc {
+            margin-left: 20px;
+            position: relative;
+            height: 280px;
+        }
+
+        .img-upload_exa {
+            height: 280px;
+        }
+
+        .bottom_Btn {
+            padding-bottom: 50px;
+        }
+
+        .bottom_Btn button {
+            padding: 8px 25px;
+        }
+
+        .bigCircle img {
+            width: 77px;
+        }
+
+        .smallCircle {
+            padding-top: 22px;
+        }
+
+        .smallCircle img {
+            width: 33px;
+        }
+
+        .icon-eye {
+            cursor: pointer;
+            line-height: 32px;
+        }
+
+        .tooltip-inner {
+            background-color: transparent;
+            color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container-fluid" style="min-width:1080px;">
+    <!--头部-->
+    <div class="row" data-background-color="dark" style="height:60px;">
+        <table class="table header" style="margin-top:0;margin-bottom:0;width:100%">
+            <tr>
+                <td>
+                    <div class="div-img">
+                        <img id="jmicon" src="../../img/logo.png" class="img-header-logo" alt="近脉商家中心"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!--顶部进度示意导航图-->
+    <div class="row text-center topNav" style="margin:130px 0 50px 0;">
+        <div class="col-xs-offset-1 col-xs-10">
+            <div id="backLine"
+                 style="height:10px;background:#000000;border-radius:5px;"></div>
+            <div style="margin-top:-100px">
+                <div class="row text-center">
+                    <h3 class="col-xs-3 col-xs-offset-0">基本信息</h3>
+                    <h3 class="col-xs-3">资质信息</h3>
+                    <h3 class="col-xs-3">结款信息</h3>
+                    <h3 class="col-xs-3">送审成功</h3>
+                </div>
+                <div class="row text-center circles">
+                    <div class="col-xs-3 col-xs-offset-0 bigCircle"><img src="../../img/7.png"/></div>
+                    <div class="col-xs-3 smallCircle"><img src="../../img/8.png"/></div>
+                    <div class="col-xs-3 smallCircle"><img src="../../img/8.png"/></div>
+                    <div class="col-xs-3 smallCircle"><img src="../../img/8.png"/></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--内容-->
+    <div class="row">
+        <div class="col-xs-offset-1 col-xs-10">
+            <div id="registerFrom" class="form-horizontal" autocomplete="false">
+
+                <!--基本信息-->
+                <div id="basicInfo">
+                    <div id="Shops" class="row">
+                        <h4>商家信息</h4>
+                        <div class="form-group">
+                            <label for="Name" class="control-label label-subtitle">&lowast; 商家姓名:</label>
+                            <div class="col-xs-2">
+                                <input id="Name" type="text" class="form-control" maxlength="30"/>
+                            </div>
+                            <!--<span style="display:none;" class="errorTips" id="name_tips">
+                                <i class='glyphicon glyphicon-remove-sign'></i>&nbsp;请输入中文和字母
+                            </span>-->
+                            <label for="phoneInput" class="control-label label-subtitle">&lowast; 商家手机:</label>
+                            <div class="col-xs-2">
+                                <input id="phoneInput" type="text" class="form-control" maxlength="11"
+                                       onkeydown="input_limits.only_num(event);"
+                                       onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')"/>
+                            </div>
+                            <div id="phone_tips" class="errorTips" style="display:none;">
+                                <i class='glyphicon glyphicon-remove-sign'></i>请输入正确的手机号码
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label label-subtitle">&lowast; 商家分类:</label>
+                            <div class="col-xs-2" style="padding-right: 0">
+                                <select name="repast" id="repast" class="form-control">
+                                    <option value="">合作行业</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-2" style="padding-right: 0">
+                                <select name="category" id="category" class="form-control">
+                                    <option value="">品类</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-2" style="padding-right: 0">
+                                <select name="small_category" id="small_category" class="form-control">
+                                    <option value="">子类别</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <hr/>
+                    </div>
+
+                    <div id="Store" class="row">
+                        <h4>门店信息</h4>
+                        <div class="form-group">
+                            <label for="store_name" class="control-label label-subtitle">&lowast; 门店名称:</label>
+                            <div class="col-xs-6">
+                                <input id="store_name" type="text" class="form-control" maxlength="30"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="telNum">
+                            <label for="area_code" class="control-label label-subtitle">&nbsp;&nbsp;&nbsp;门店座机:</label>
+                            <div class="col-xs-1" style="padding-right:0">
+                                <input type="text" class="form-control telstatic" placeholder="区号"
+                                       id="area_code" maxlength="5" onkeydown="input_limits.only_num(event);"
+                                       onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')">
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="text" class="form-control telstatic" placeholder="请输入门店电话"
+                                       id="store_tel" maxlength="8" onkeydown="input_limits.only_num(event);"
+                                       onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')">
+                            </div>
+                            <div class="col-xs-1" style="padding-left: 0">
+                                <input type="text" class="form-control telstatic" placeholder="分机号"
+                                       id="ext" maxlength="5" onkeydown="input_limits.only_num(event);"
+                                       onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')">
+                            </div>
+                            <div id="tel_tips" class="errorTips" style="display:none;">
+                                <i class='glyphicon glyphicon-remove-sign'></i>
+                                <span>请输入正确的座机号码</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label label-subtitle">&lowast; 门店地址:</label>
+                            <div class="col-xs-2" style="padding-right:0">
+                                <select name="province" id="province" class="form-control" title="get_city">
+                                    <option value="">--省--</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-2" style="padding-right:0">
+                                <select name='city' id='city' class="form-control" title="get_area">
+                                    <option value="">--市--</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-2" style="padding-right:0">
+                                <select name='district' id='district' class="form-control" title="no_get">
+                                    <option value="">--区/县--</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-2" style="padding-right:0">
+                                <select name='district' id='circle' class="form-control">
+                                    <option value="">--商圈--</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label label-subtitle">&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <div class="col-xs-5" style="padding-right: 0">
+                                <input type="text" class="form-control" id="address" name="address" maxlength="200"
+                                       placeholder="填写具体的位置（精确至门牌号），请与执照地址保持一致">
+                                <input type="hidden" id="position" name="position" value=""/>
+                            </div>
+                            <!--点击定位标记后获得地址坐标-->
+                            <div class="col-xs-5">
+                                <button type="button" class="btn mybtn" style="margin-left: 10px;padding: 6px 15px;"
+                                        id="local" onclick="local_address();">定位标记
+                                </button>
+                                    <span id="pointError" class="errorTips"
+                                          style="display:none;margin-left:20px;line-height:32px;float: none;;">
+                                        <i class='glyphicon glyphicon-remove-sign'></i>
+                                        <span>请定位当前地址</span>
+                                    </span>
+                            </div>
+
+                            <div id="mapshow" class="form-group" style="margin-left:5px;margin-bottom:0;">
+                                <div class="col-xs-10" style="margin-bottom: 10px;margin-top: 20px">
+                                    <small class="form-control-static map_tips">
+                                        为了更快的通过审核，请在地图上精确的标记您的位置
+                                    </small>
+                                </div>
+                                <div class="col-xs-11 text-left" style="margin-left:16px;padding-left: 0">
+                                    <div id="allmap" style="width:100%;margin:auto;height:400px;"></div>
+                                    <div id="searchResultPanel" style="display: none;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+
+                    <div class="bottom_Btn">
+                        <button id="basicInfo_next" type="button" class="btn mybtn">下一步</button>
+                    </div>
+                </div>
+
+                <!--资质信息-->
+                <div id="qualificationInfo" class="row" style="display:none;">
+                    <h4>资质信息</h4>
+                    <div class="form-group">
+                        <label class="control-label label-subtitle">
+                            &lowast; 门店LOGO照片:
+                        </label>
+                    </div>
+                    <div id="LOGO_tmp" class="form-group upload_pic_div" style="margin-left:23px;">
+                        <form action="" name="image_form" method="post"
+                              enctype="multipart/form-data" style="display: inline-block;height:140px;">
+                            <div class="div-upload" style="position: relative;width: 140px;">
+                                <img src="" style="display: none;width: 140px;" class="tmp_img" data-path=""/>
+                                <span style="position: absolute;top: -20%;" class="span_upload">&nbsp;门店LOGO</span>
+                                <a href="javascript:;" class="photo-upload upload_key">
+                                    <input id="slogo" class="form-control div-upload shop_img" name="image"
+                                           type="file" accept="image/png,image/jpg"/>
+                                    点击上传
+                                </a>
+                            </div>
+                        </form>
+                        <img src="../../img/PNG/1.png" alt="上传图片" class="img-upload" style="width:140px;height:140px;">
+                        <ol class="photo_tips">
+                            <li>
+                                250X250
+                            </li>
+                        </ol>
+                            <span class="tmperror" style="display:none;">
+                                <i class='glyphicon glyphicon-remove-sign'></i>&nbsp;请上传小于2M的图片(仅支持JPG、JPEG、PNG格式)
+                            </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label label-subtitle">
+                            &lowast; 门店招牌照片:
+                        </label>
+                    </div>
+                    <div id="signboard_tmp" class="form-group upload_pic_div" style="margin-left:23px">
+                        <form action="" name="image_form" method="post"
+                              enctype="multipart/form-data" style="display: inline-block;height: 140px;">
+                            <div class="div-upload" style="position: relative">
+                                <img src="" style="display: none;" class="tmp_img" data-path=""/>
+                                <span style="position: absolute;top: -20%;" class="span_upload">&nbsp;门店招牌</span>
+                                <a href="javascript:;" class="photo-upload upload_key">
+                                    <input id="ssign" class="form-control div-upload shop_img" name="image"
+                                           type="file" accept="image/png,image/jpg"/>
+                                    点击上传
+                                </a>
+                            </div>
+                        </form>
+                        <img src="../../img/PNG/1.png" alt="上传图片" class="img-upload">
+                        <ol class="photo_tips">
+                            <li>
+                                从店面正前方取景，光线明亮
+                            </li>
+                            <li>
+                                店面招牌和店面大门全景拍摄
+                            </li>
+                            <li>
+                                图片不得有水印、LOGO和其他网站信息
+                            </li>
+                        </ol>
+                            <span class="tmperror" style="display:none;">
+                                <i class='glyphicon glyphicon-remove-sign'></i>&nbsp;请上传小于2M的图片(仅支持JPG、JPEG、PNG格式)
+                            </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label label-subtitle">
+                            &lowast; 店内照片:
+                        </label>
+                    </div>
+                    <div id="shopInner_tmp" class="form-group upload_pic_div" style="margin-left:23px">
+                        <form action="" name="image_form" method="post"
+                              enctype="multipart/form-data" style="display: inline-block;height: 140px;">
+                            <div class="div-upload" style="position: relative">
+                                <img src="" style="display: none;" class="tmp_img" data-path=""/>
+                                <span style="position: absolute;top: -20%;" class="span_upload">&nbsp;店内照片</span>
+                                <a href="javascript:;" class="photo-upload upload_key">
+                                    <input id="sinner" class="form-control div-upload shop_img" name="image"
+                                           type="file" accept="image/png,image/jpg"/>
+                                    点击上传
+                                </a>
+                            </div>
+                        </form>
+                        <img src="../../img/PNG/2.png" alt="上传图片" class="img-upload">
+                        <ol class="photo_tips">
+                            <li>
+                                体现主要经营环境，包含桌椅、墙面、地板等
+                            </li>
+                            <li>
+                                地面干净，无明显有无及垃圾；墙面无霉斑
+                            </li>
+                            <li>
+                                照片如有工作人员，需着装干净整洁
+                            </li>
+                            <li>
+                                图片不得有水印、LOGO和其他网站信息
+                            </li>
+                        </ol>
+                            <span class="tmperror" style="display:none;">
+                                <i class='glyphicon glyphicon-remove-sign'></i>&nbsp;请上传小于2M的图片(仅支持JPG、JPEG、PNG格式))
+                            </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label label-subtitle">
+                            &lowast; 营业执照:
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label label-subtitle">
+                            &nbsp;&nbsp;上传清晰营业执照照片
+                        </label>
+                    </div>
+                    <div id="blin_image" class="form-group upload_pic_div" style="margin-left:23px">
+                        <form action="" name="image_form" method="post"
+                              enctype="multipart/form-data" style="display: inline-block;height: 140px;">
+                            <div class="div-upload" style="position: relative">
+                                <img style="display: none;" class="tmp_img" data-path="" src="">
+                                <span style="position: absolute;top: -20%;" class="span_upload">&nbsp;&nbsp;营业执照</span>
+                                <a href="javascript:;" class="photo-upload upload_key">
+                                    <input id="bimg" class="form-control div-upload shop_img" name="image"
+                                           type="file" accept="image/png,image/jpg"/>
+                                    点击上传
+                                </a>
+                            </div>
+                        </form>
+                        <img src="../../img/BD/6.png" alt="上传图片" class="img-upload">
+                        <ol class="photo_tips">
+                            <li>
+                                证照边框及国徽必须包含在内
+                            </li>
+                            <li>
+                                证照拍摄角度应为“正视”，不得出现歪斜现象
+                            </li>
+                            <li>
+                                证件清晰可辨认，不得使用复印件
+                            </li>
+                        </ol>
+                            <span class="tmperror" style="display:none;">
+                                <i class='glyphicon glyphicon-remove-sign'></i>&nbsp;请上传小于2M的图片(仅支持JPG、JPEG、PNG格式)
+                            </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="licenceNameInput" class="control-label label-subtitle">&lowast; 营业执照名称:</label>
+                        <div class="col-xs-5">
+                            <input id="licenceNameInput" type="text" class="form-control licname"
+                                   placeholder="请填写照片中的营业执照名称" maxlength="30"/>
+                        </div>
+                        <div class="errorTips" style="display:none;">
+                            <i class='glyphicon glyphicon-remove-sign'></i>请输入正确的执照名称
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="licenceApplyNumInput" class="control-label label-subtitle">&lowast; 营业执照注册号:</label>
+                        <div class="col-xs-5">
+                            <input id="licenceApplyNumInput" type="text" class="form-control licnum"
+                                   placeholder="请和照片中的信息保持一致" maxlength="20"/>
+                        </div>
+                        <div class="errorTips" style="display:none;">
+                            <i class='glyphicon glyphicon-remove-sign'></i>请输入正确的证件号码
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="licenceAddInput" class="control-label label-subtitle">&lowast; 营业执照注册地址:</label>
+                        <div class="col-xs-5">
+                            <input id="licenceAddInput" type="text" class="form-control licadd"
+                                   placeholder="请和照片中的信息保持一致" maxlength="50"/>
+                        </div>
+                        <div class="errorTips" style="display:none;">
+                            <i class='glyphicon glyphicon-remove-sign'></i>请输入正确的证件地址
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="licenceAddInput" class="control-label label-subtitle">
+                            &lowast; 注册有效期:
+                        </label>
+                        <div class="col-xs-8">
+                            <div class="col-xs-3 radio radio-inline">
+                                <input type="radio" name="licenseTime" id="longTime" value="1" checked>
+                                <label for="longTime" style="line-height:15px;font-size:14px">长期有效</label>
+                            </div>
+
+                            <div class="col-xs-2 radio radio-inline" style="padding-right: 0">
+                                <input type="radio" name="licenseTime" id="TimeTo" value="0">
+                                <label for="TimeTo" style="line-height:15px;font-size:14px">到期日期为</label>
+                            </div>
+                            <div class="col-xs-3 input-group date">
+                                <input id="datepicker" type="text" class="form-control datepicker">
+                                <span class="glyphicon glyphicon-calendar form-control-feedback"
+                                      style="color:#a9a9a9"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--餐饮服务许可证-->
+                    <div class="form-group">
+                        <label class="control-label label-subtitle">
+                            &lowast; 餐饮服务许可证:
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label label-subtitle">
+                            &nbsp;&nbsp;上传清晰餐饮服务许可证照片
+                        </label>
+                    </div>
+                    <div id="slin_image" class="form-group upload_pic_div" style="margin-left:23px">
+                        <form action="" name="image_form" method="post"
+                              enctype="multipart/form-data" style="display: inline-block;height: 140px;">
+                            <div class="div-upload" style="position: relative">
+                                <img style="display: none;" class="tmp_img" data-path="" src="">
+                                <span style="position: absolute;top: -20%;left:14%"
+                                      class="span_upload">&nbsp;餐饮服务许可证</span>
+                                <a href="javascript:;" class="photo-upload upload_key">
+                                    <input id="simg" class="form-control div-upload shop_img" name="image"
+                                           type="file" accept="image/png,image/jpg"/>
+                                    点击上传
+                                </a>
+                            </div>
+                        </form>
+                        <img src="../../img/catering.jpg" alt="上传图片" class="img-upload">
+                        <ol class="photo_tips">
+                            <li>
+                                证照边框及国徽必须包含在内
+                            </li>
+                            <li>
+                                证照拍摄角度应为“正视”，不得出现歪斜现象
+                            </li>
+                            <li>
+                                证件清晰可辨认，不得使用复印件
+                            </li>
+                        </ol>
+                            <span class="tmperror" style="display:none;">
+                                <i class='glyphicon glyphicon-remove-sign'></i>&nbsp;请上传小于2M的图片(仅支持JPG、JPEG、PNG格式)
+                            </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="licenceNameInput" class="control-label label-subtitle">&lowast; 许可证件名称:</label>
+                        <div class="col-xs-5">
+                            <input id="catering_licenceNameInput" type="text" class="form-control licname"
+                                   placeholder="请填写照片中的许可证名称" maxlength="30"/>
+                        </div>
+                        <div class="errorTips" style="display:none;">
+                            <i class='glyphicon glyphicon-remove-sign'></i>请输入正确的执照名称
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="licenceApplyNumInput" class="control-label label-subtitle">&lowast; 许可证件编号:</label>
+                        <div class="col-xs-5">
+                            <input id="catering_licenceApplyNumInput" type="text" class="form-control licnum"
+                                   placeholder="请和照片中的信息保持一致" maxlength="20"/>
+                        </div>
+                        <div class="errorTips" style="display:none;">
+                            <i class='glyphicon glyphicon-remove-sign'></i>请输入正确的证件号码
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="licenceAddInput" class="control-label label-subtitle">&lowast; 许可证件地址:</label>
+                        <div class="col-xs-5">
+                            <input id="catering_licenceAddInput" type="text" class="form-control licadd"
+                                   placeholder="请和照片中的信息保持一致" maxlength="50"/>
+                        </div>
+                        <div class="errorTips" style="display:none;">
+                            <i class='glyphicon glyphicon-remove-sign'></i>请输入正确的证件地址
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="licenceAddInput" class="control-label label-subtitle">&lowast; 到期日期为&emsp;</label>
+                        <div class="col-xs-2 input-group date">
+                            <input id="catering_datepicker" type="text" class="form-control datepicker">
+                            <span class="glyphicon glyphicon-calendar form-control-feedback"
+                                  style="color:#a9a9a9"></span>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="bottom_Btn">
+                        <button id="quaInfo_pre" type="button" class="btn mybtn" style="margin-right: 20px">上一步</button>
+                        <button id="quaInfo_next" type="button" class="btn mybtn">下一步</button>
+                    </div>
+                </div>
+
+                <div id="settleAndIdentityInfo" class="row" style="display:none;">
+                    <!--结款信息-->
+                    <div id="settleInfo" class="col-xs-12">
+                        <h4>结款信息</h4>
+                        <div class="form-group">
+                            <label class="control-label label-subtitle">
+                                &lowast; 银行信息:
+                            </label>
+                            <div class="col-xs-6">
+                                <div class="col-xs-2 radio radio-inline">
+                                    <input type="radio" name="bankdiv" id="hasBank" value="0">
+                                    <label for="hasBank" style="line-height:15px;font-size:14px">有</label>
+                                </div>
+                                <div class="col-xs-2 radio radio-inline" style="padding-right: 0">
+                                    <input type="radio" name="bankdiv" id="noBank" value="1" checked>
+                                    <label for="noBank" style="line-height:15px;font-size:14px">无</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="bankDetailsDiv" style="display: none">
+                            <div class="form-group">
+                                <label for="bankAccountInput" class="control-label label-subtitle">&lowast;
+                                    银行账户:</label>
+                                <div class="col-xs-2">
+                                    <select name="category" id="bankAccountInput" class="form-control">
+                                        <option value="">请选择</option>
+                                        <option value="个人户">个人户</option>
+                                        <option value="公司户">公司户</option>
+                                    </select>
+                                </div>
+                                <label for="AccountNameInput" class="control-label label-subtitle">&lowast; 开户名:</label>
+                                <div class="col-xs-3">
+                                    <input id="AccountNameInput" type="text" class="form-control"
+                                           placeholder="请填写" maxlength="30"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="accountBankSheng" class="control-label label-subtitle">&lowast;
+                                    开户行所在省市:</label>
+                                <div class="col-xs-3">
+                                    <select name="accountBankSheng" id="accountBankSheng" class="form-control">
+                                        <option value="">请选择省</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-3">
+                                    <select name="accountBankShi" id="accountBankShi" class="form-control">
+                                        <option value="">-市-</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bankNameInput" class="control-label label-subtitle">&lowast; 银行名称:</label>
+                                <div class="col-xs-3">
+                                    <select name="bankNameInput" id="bankNameInput" class="form-control">
+                                        <option value="">-银行名称-</option>
+                                    </select>
+                                </div>
+                                <label for="accountBankNameInput" class="control-label label-subtitle">&lowast;
+                                    开户行名称:</label>
+                                <div class="col-xs-3">
+                                    <select name="accountBankNameInput" id="accountBankNameInput" class="form-control">
+                                        <option value="">-开户行名称-</option>
+                                    </select>
+                                    <input id="accountBankNameHand" type="text" style="display:none;"
+                                           class="form-control"/>
+                                </div>
+                                <div class="col-xs-1 checkbox">
+                                    <input id="bankEdit" type="checkbox" value="0">
+                                    <label for="bankEdit" style="font-size: 13px;">自定义</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bankTelInput" id="cardNum" class="control-label label-subtitle">&lowast;
+                                    银行卡号:</label>
+                                <div class="col-xs-5">
+                                    <input id="bankTelInput" type="text" class="form-control"
+                                           placeholder="请填写" maxlength="20" onkeydown="input_limits.only_num(event);"
+                                           onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')"/>
+                                </div>
+                                <div class="errorTips" style="display:none;">
+                                    <i class='glyphicon glyphicon-remove-sign'></i>请输入正确的银行卡号
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="billing_account_name" class="control-label label-subtitle">&lowast;
+                                    财务联系人:</label>
+                                <div class="col-xs-2">
+                                    <input id="billing_account_name" type="text" class="form-control" maxlength="30"/>
+                                </div>
+                                <label for="billing_account_tel" class="control-label label-subtitle">&lowast;
+                                    财务联系人手机:</label>
+                                <div class="col-xs-2">
+                                    <input id="billing_account_tel" type="text" class="form-control" maxlength="11"
+                                           onkeydown="input_limits.only_num(event);"
+                                           onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')"/>
+                                </div>
+                                <div id="billing_phone_tips" class="errorTips" style="display:none;">
+                                    <i class='glyphicon glyphicon-remove-sign'></i>请输入正确的手机号码
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--身份信息-->
+                        <h4>身份信息</h4>
+                        <div class="form-group" id="licenseChoose">
+                            <label class="control-label label-subtitle">
+                                &lowast; 身份信息:
+                            </label>
+                            <div class="col-xs-6">
+                                <div class="col-xs-2 radio radio-inline">
+                                    <input type="radio" name="LicenseJustify" id="hasPerLicense" value="0">
+                                    <label for="hasPerLicense" style="line-height:15px;font-size:14px">有</label>
+                                </div>
+                                <div class="col-xs-2 radio radio-inline" style="padding-right: 0">
+                                    <input type="radio" name="LicenseJustify" id="noPerLicense" value="1" checked>
+                                    <label for="noPerLicense" style="line-height:15px;font-size:14px">无</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="identityInfo" style="display:none;">
+                            <div class="form-group">
+                                <label class="control-label label-subtitle">
+                                    &lowast; <span id="id_label">上传清晰证件照片</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="IDType" class="control-label label-subtitle">&lowast; 证件类型:</label>
+                                <div class="col-xs-4">
+                                    <select name="category" id="IDType" class="form-control" onchange="idChange();">
+                                        <option value="ID_CARD">身份证</option>
+                                        <option value="HK_MACAO_CARD">港澳通行证</option>
+                                        <option value="TAIWAN_CARD">台胞证</option>
+                                        <option value="PASSPORT">护照</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="realName" class="control-label label-subtitle">
+                                    &lowast; 真实姓名:
+                                </label>
+                                <div class="col-xs-4">
+                                    <input id="realName" type="text" class="form-control"
+                                           placeholder="请填写真实姓名" maxlength="30"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="identificationNumInput" class="control-label label-subtitle">
+                                    &lowast; <span id="id_num">证件号码:</span>
+                                </label>
+                                <div class="col-xs-4">
+                                    <input id="identificationNumInput" type="text" class="form-control" maxlength="18"
+                                           onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')"/>
+                                </div>
+                                <div id="idnum_tips" class="errorTips" style="display:none;">
+                                    <i class='glyphicon glyphicon-remove-sign'></i>&nbsp;请输入正确的证件号码
+                                </div>
+                            </div>
+                            <!--其他证件：身份证、台胞证、港澳通行证-->
+                            <div id="identification" style="margin-left:38px">
+                                <div id="idfront_image_form" class="form-group upload_pic_div normal">
+                                    <form action="" name="image_form" method="post"
+                                          enctype="multipart/form-data" style="display:inline-block;height:140px;">
+                                        <div class="div-upload" style="position: relative">
+                                            <img src="" style="display:none;" class="tmp_img" data-path=""/>
+                                            <span style="position: absolute;top:-20%;left:26%" class="span_upload">&nbsp;&nbsp;个人信息页</span>
+                                            <a href="javascript:;" class="photo-upload upload_key">
+                                                <input id="idfront" class="form-control div-upload id_img" name="image"
+                                                       type="file" accept="image/png,image/jpg"/>
+                                                点击上传
+                                            </a>
+                                        </div>
+                                    </form>
+                                    <img src="../../img/PNG/3.png" alt="上传图片" class="img-upload"/>
+                                    <ol class="photo_tips">
+                                        <li>
+                                            证件清晰可辨认，不得使用复印件
+                                        </li>
+                                    </ol>
+                                <span id="idfrontError" class="tmperror" style="display:none;">
+                                    <i class='glyphicon glyphicon-remove-sign'></i>&nbsp;请上传小于2M的图片(仅支持JPG、JPEG、PNG格式)
+                                </span>
+                                </div>
+                                <div id="idback_image_form" class="form-group upload_pic_div normal">
+                                    <form action="" name="image_form" method="post"
+                                          enctype="multipart/form-data" style="display:inline-block;height: 140px;">
+                                        <div class="div-upload" style="position: relative">
+                                            <img src="" style="display: none;" class="tmp_img" data-path="">
+                                            <span style="position: absolute;top: -20%;left:35%" class="span_upload">&nbsp;&nbsp;国徽页</span>
+                                            <a href="javascript:;" class="photo-upload upload_key">
+                                                <input id="idback" class="form-control div-upload id_img" name="image"
+                                                       type="file" accept="image/png,image/jpg"/>
+                                                点击上传
+                                            </a>
+                                        </div>
+                                    </form>
+                                    <img src="../../img/PNG/4.png" alt="上传图片" class="img-upload"/>
+                                    <ol class="photo_tips">
+                                        <li>
+                                            证件清晰可辨认，不得使用复印件
+                                        </li>
+                                    </ol>
+                                <span id="idbackError" class="tmperror" style="display:none;">
+                                    <i class='glyphicon glyphicon-remove-sign'></i>&nbsp;请上传小于2M的图片(仅支持JPG、JPEG、PNG格式)
+                                </span>
+                                </div>
+
+                                <!--护照-->
+                                <div id="ps_image_form" class="form-group upload_pic_div_exc exception"
+                                     style="display:none;">
+                                    <form action="" name="image_form" method="post"
+                                          enctype="multipart/form-data" style="display: inline-block;">
+                                        <div class="div-upload" style="position: relative;height:280px;">
+                                            <img src="" style="display: none;height:280px;" class="tmp_img"
+                                                 data-path=""/>
+                                            <span style="position: absolute;top:10%;left:26%" class="span_upload">&nbsp;&nbsp;个人信息页</span>
+                                            <a href="javascript:;" class="photo-upload upload_key"
+                                               style="margin-top: 50%">
+                                                <input id="idall" class="form-control div-upload id_img" name="image"
+                                                       type="file" accept="image/png,image/jpg" style="height:280px"/>
+                                                点击上传
+                                            </a>
+                                        </div>
+                                    </form>
+                                    <img src="../../img/PNG/9.png" alt="上传图片" class="img-upload_exa"/>
+                                    <ol class="photo_tips">
+                                        <li>
+                                            证件清晰可辨认，不得使用复印件
+                                        </li>
+                                    </ol>
+                                <span id="idallError" class="tmperror" style="display:none;">
+                                    <i class='glyphicon glyphicon-remove-sign'></i>&nbsp;请上传小于2M的图片(仅支持JPG、JPEG、PNG格式)
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr/>
+                    <div class="bottom_Btn">
+                        <button class="btn mybtn" type="submit" id="sentBtn">送&nbsp;审</button>
+                        <button class="btn mybtn" type="button" id="pending">储存并待处理</button>
+                        <button class="btn mybtn" type="button" id="settleInfo_pre">上一步</button>
+                    </div>
+                </div>
+
+
+                <!--账户信息-->
+                <!--<div id="accountInfo" class="row" style="display: none;">
+                    <h4>账户信息</h4>
+                    <div class="form-group">
+                        <label for="accountInput" class="control-label label-subtitle">&lowast; 商家账号:</label>
+                        <div class="col-xs-2">
+                            <input id="accountInput" type="text" class="form-control" maxlength="30"/>
+                        </div>
+                        <div id="acc_tips" class="errorTips" style="display:none;">
+                            <i class='glyphicon glyphicon-remove-sign'></i>账号必须为2~30位，且只能包含-_.和中英文
+                        </div>
+
+                        <label for="passwordInput" class="control-label label-subtitle">&lowast; 商家密码:</label>
+                        <div class="col-xs-2">
+                            <input id="passwordInput" type="password" class="form-control" maxlength="16"/>
+                        </div>
+                        <span id="pwdInvisible" class="fa fa-eye-slash icon-eye"></span>
+                        <span id="pwdVisible" class="fa fa-eye icon-eye" style="display:none;"></span>
+                        <div id="pwd_tips" class="errorTips" style="display:none;">
+                            <i class='glyphicon glyphicon-remove-sign'></i>密码必须为6~16位，且只能包含字母、数字和特殊符号
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="bottom_Btn">
+                        <button class="btn mybtn" type="submit" id="sentBtn">送&nbsp;审</button>
+                        <button class="btn mybtn" type="button" id="pending">储存并待处理</button>
+                        <button class="btn mybtn" type="button" id="accountInfo_pre">上一步</button>
+                    </div>
+                </div>-->
+
+                <!--送审成功-->
+                <div id="success" class="text-center" style="display:none;">
+                    <div style="margin-top: 50px;margin-left:20%;">
+                        <table>
+                            <tr>
+                                <td rowspan="2" style="width: 30%;padding-right: 10px;">
+                                    <img src="../../img/success.png" alt="" style="width: 50%;float: right">
+                                </td>
+                                <td style="vertical-align: bottom;font-size:20px">
+                                    恭喜您，注册申请成功
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: inherit;color:#7E7E7E;font-size:15px">
+                                    我们将尽快进行审核，请注意手机号（ <strong><span id="user_tel"
+                                                                    style="color: black"></span></strong>
+                                    ）的短信通知
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br><br><br><br>
+                    <div class=" text-center">
+                        <button class="btn mybtn" type="button" id="suc" style="padding:6px 25px">
+                            回到商家注册列表
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--保存成功-->
+<div id="saveSuccessModal" class="modal fade" role="dialog" data-dismiss="modal" data-backdrop="static"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:490px;min-width:490px;">
+        <div class="modal-content" id="modalcontent">
+            <div class="modal-body" style="padding: 90px 5px 110px 5px;">
+                <div class="row">
+                    <div class="col-xs-2 col-xs-offset-4">
+                        <span class="fa fa-check-circle" style="font-size:50px"></span>
+                    </div>
+                    <div class="col-xs-6" style="text-align: left;padding-left: 0px;line-height: 48px;">
+                        <span style="font-size: 25px;">保存成功</span>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <p style="font-size: 18px;margin-top: 20px">自动返回系统中......</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../../js/plugins/moment.js"></script>
+<script type="text/javascript" src="../../js/plugins/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="../../js/plugins/jquery.validate.js"></script>
+<script type="text/javascript" src="../../js/plugins/jquery.form.js"></script>
+<script type="text/javascript" src="../../js/bmap.js"></script>
+<script type="text/javascript" src="../../js/common/interface.js"></script>
+<script type="text/javascript" src="../../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../../js/common/infoFilling.js"></script>
+<script type="text/javascript" src="../../js/common/verify.js"></script>
+<script type="text/javascript" src="../../js/my/BDregisterVerify.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <!-- Le styles -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/font-awesome.css" rel="stylesheet">
+    <link href="./css/checkbox.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+
+    <style>
+        label {
+            color: #686868;
+            font-weight: 400;
+        }
+        p {
+            line-height: 0.8;
+        }
+        .div-grey-border {
+            border: 2px solid #D9D9D9;
+            padding-top: 20px;
+            margin: 0 12%;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="container-fluid" id="body" style="min-width: 1400px;">
+    <div class="row" data-background-color="dark">
+        <table class="table header" style="margin-top:0;margin-bottom:0;">
+            <tr>
+                <td>
+                    <div class="div-img" style="margin-top:3px;">
+                        <img src="../img/logo.png" class="img-header-logo" alt="近脉商家中心">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br/><br/><br/><br/>
+    <div class="div-grey-border">
+        <div class="row">
+            <div class="text-center">
+                <h3>
+                    <strong>审核后台登录</strong>
+                </h3>
+            </div>
+
+            <div class="col-xs-offset-3 col-xs-6">
+                <hr/>
+                <form id="loginForm" class="form-horizontal" role="form" autocomplete="off">
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label font-title" name="username"
+                               style="text-align:right;padding-top: 7px">账号</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control input-check" id="username"
+                                   name="username" autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label font-title" for="password"
+                               style="text-align:right;padding-top: 7px">密码</label>
+                        <div class="col-xs-8">
+                            <input type="password" class="form-control input-check" id="password"
+                                   name="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-8">
+                            <div class="checkbox" style="padding-left: 0">
+                                <div class="checkbox">
+                                    <input id="remember" type="checkbox" value="0" checked="checked">
+                                    <label for="remember">下次自动登录</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-8">
+                            <button class="btn mybtn" type="submit" id="log_in"
+                                    style="width:70px;letter-spacing:2px">登录</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="./js/plugins/jquery.js"></script>
+<script type="text/javascript" src="./js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="./js/plugins/jquery.dataTables.js"></script>
+<script type="text/javascript" src="./js/plugins/jquery.validate.js"></script>
+<script type="text/javascript" src="./js/plugins/jquery.cookie.js"></script>
+<script type="text/javascript" src="./js/common/interface.js"></script>
+<script type="text/javascript" src="./js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="./js/my/index.js"></script>
+</body>
+
+</html>
+

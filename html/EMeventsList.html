@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/font-awesome.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="container htmlWrap">
+    <div class="row" style="margin-top:40px">
+        <div class="col-md-12" style="padding-left: 0">
+            <hr class="navline"/>
+            <ul class="nav nav-pills List" id="eventsList">
+                <li id="wholeEvents" class="active" style="margin-right: 15px;"><a href="#">全部活动</a></li>
+                <li id="stayOnEvents" style="margin-right: 15px;"><a href="#">待上线活动</a></li>
+                <li id="onlineEvents" style="margin-right: 15px;"><a href="#">已上线活动</a></li>
+                <li id="offlineEvents"><a href="#">已下线活动</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="formTable" class="col-xs-12 form-horizontal"
+             style="margin-top:40px;margin-bottom:40px;padding-left: 0;">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table id="eventsTable" class="table table-bordered text-center">
+                        <thead>
+                        <tr>
+                            <th>活动时间</th>
+                            <th>活动名称</th>
+                            <th>优惠券</th>
+                            <th>累计抵用金额</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--页码区域-->
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <ul class="pagination pageIndex">
+                        <li id="first"><a>&laquo;</a></li>
+                        <li id="previous"><a>&lsaquo;</a></li>
+                        <li class="active"><a id="pageIndex">1</a></li>
+                        <li id="next"><a>&rsaquo;</a></li>
+                        <li id="last"><a>&raquo;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/common/interface.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/my/EMeventsList.js"></script>
+</body>
+</html>

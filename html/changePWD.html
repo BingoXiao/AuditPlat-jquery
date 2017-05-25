@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商家审核后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="深圳市近脉网络科技有限公司 - 商家审核后台">
+
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/font-awesome.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        .form-group{
+            margin-top: 20px;
+            margin-bottom:25px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container-fluid">
+
+    <div class="row" style="margin-top:100px;margin-bottom: 100px">
+        <div class="col-xs-8" style="border:1px solid #c9c9c9;padding: 10px;margin-left:12%">
+            <h3 class="text-center" style="margin-top: 50px;margin-bottom:40px">修改密码</h3>
+            <form id="editPasswordForm" class="form-horizontal" role="form" autocomplete="false">
+                <div class="form-group">
+                    <label class="col-xs-offset-1 col-xs-3 control-label font-title"
+                           style="">账号：</label>
+                    <div class="col-xs-5">
+                        <p id="staticName" class="form-control-static"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-offset-1 col-xs-3 control-label font-title" for="oldPW">旧密码：</label>
+                    <div class="col-xs-5">
+                        <input type="password" class="form-control input-check" id="oldPW" name="old_password" autofocus="autofocus">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-offset-2 col-xs-2 control-label font-title" for="newPW">新密码：</label>
+                    <div class="col-xs-5">
+                        <input type="password" class="form-control input-check" id="newPW" name="new_password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-offset-2 col-xs-2 control-label font-title" for="conPW">确认密码：</label>
+                    <div class="col-xs-5">
+                        <input type="password" class="form-control input-check" name="conPW" id="conPW">
+                    </div>
+                    <div id="pwd_tips" class="row errorTips" style="display:none;float: none;">
+                        <i class='glyphicon glyphicon-remove-sign'></i>新密码不能与旧密碼相同
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-3 col-xs-6 text-center">
+                        <button id="pwdConfirm" type="button" class="btn mybtn" style="width: 100px;margin-top:30px;margin-bottom: 50px">确定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../js/plugins/jquery.js"></script>
+<script type="text/javascript" src="../js/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.validate.js"></script>
+<script type="text/javascript" src="../js/common/interface.js"></script>
+<script type="text/javascript" src="../js/common/dataProcessing.js"></script>
+<script type="text/javascript" src="../js/my/checkIndex.js"></script>
+</body>
+</html>
+
